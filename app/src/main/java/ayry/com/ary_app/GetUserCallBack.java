@@ -6,6 +6,6 @@ package ayry.com.ary_app;
 public interface GetUserCallBack {
 
 //informs server request which method to call when finished
-    public abstract void finished(User returnedUser);
+       public abstract void finished(User returnedUser);
 
 }

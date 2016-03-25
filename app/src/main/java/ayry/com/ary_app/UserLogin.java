@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,17 +33,26 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v){
          switch(v.getId()){
              case R.id.loginBtn:
-                 String userName = userNameET.getText().toString();
-                 String password = userPasswordET.getText().toString();
+                 //set up error checks
+                 if(userNameET.getText().toString() == ""){
+                    // display message above user name field
+                 }else if(userPasswordET.getText().toString() ==""){
+                     //display message above password field
+                 }else {
+                     String userName = userNameET.getText().toString();
+                     String password = userPasswordET.getText().toString();
 
-                 User user = new User(userName,password);
+                     User user = new User(userName, password);
 
-                 authenticate(user);
+                     //checker, for variable being sent to server request
+                     Log.i("Data being sent autent", user.getUserName() + " " + user.getPassword());
 
-                 DetailsUserStoreLocal.storeUserDetails(user);
-                 DetailsUserStoreLocal.setUserLoggedIn(true);
+                     //checks to see if the user creds correspond to a user store in the database
+                     authenticate(user);
 
-                 //do on click listner here
+                     //do on click listner here
+
+                 }
 
                  break;
              case R.id.tvRegister:
@@ -52,6 +62,11 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
          }
     }
 
+    /*
+        starts a request to the server to check if the enter user details match a user stored on the server
+        if not a alert is shown incorrect details, if the cred match then the user is logged in
+    */
+
     public void  authenticate(User user){
         DB_Sever_Request dbRequest = new DB_Sever_Request(this);
         dbRequest.RequestUserDataInBackground(user, new GetUserCallBack() {
@@ -59,6 +74,8 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
             public void finished(User returnedUser) {
                 if (returnedUser == null){
                     showErrorMsg();
+                }else{
+                    LogUserIn(returnedUser);
                 }
             }
         });
@@ -77,5 +94,6 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
 
         //start the main activity
         Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

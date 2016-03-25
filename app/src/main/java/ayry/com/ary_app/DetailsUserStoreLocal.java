@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by ste on 09/03/2016.
+ * Created by Stephen Kearns on 09/03/2016.
  */
 public class DetailsUserStoreLocal {
 
@@ -19,8 +19,8 @@ public class DetailsUserStoreLocal {
     public void storeUserDetails(User user){
         SharedPreferences.Editor spEditor = userLocalDB.edit();
         spEditor.putString("userName", user.userName);
-        spEditor.putString("name", user.name);
-        spEditor.putString("email", user.email);
+        //spEditor.putString("name", user.name);
+       // spEditor.putString("email", user.email);
         spEditor.putString("password", user.password);
         spEditor.commit();
     }
