@@ -6,7 +6,7 @@ package ayry.com.ary_app;
 public class User {
     String userName, name, email, password;
 
-    public User(String userName,String name, String email, String password) {
+    public User(String name,String userName, String email, String password) {
         this.userName = userName;
         this.name = name;
         this.email = email;

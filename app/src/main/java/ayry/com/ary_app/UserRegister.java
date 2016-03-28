@@ -3,6 +3,7 @@ package ayry.com.ary_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ public class UserRegister  extends AppCompatActivity implements View.OnClickList
         etName = (EditText) findViewById(R.id.etNameReg);
         userNameET = (EditText) findViewById(R.id.etUserNameReg);
         userEmailET = (EditText) findViewById(R.id.etUserEmailReg);
-        userPasswordET = (EditText) findViewById(R.id.userPassword);
+        userPasswordET = (EditText) findViewById(R.id.etUserPassswordReg);
         regBtn = (Button) findViewById(R.id.RegBtn);
 
         regBtn.setOnClickListener(this);
@@ -33,12 +34,14 @@ public class UserRegister  extends AppCompatActivity implements View.OnClickList
             case R.id.RegBtn:
 
                 //retrive data entred by user
-                String username = userNameET.getText().toString();
                 String name = etName.getText().toString();
+                String username = userNameET.getText().toString();
                 String email = userEmailET.getText().toString();
                 String password = userPasswordET.getText().toString();
 
-                User RegUser = new User(username,name,email,password);
+                User RegUser = new User(name,username,email,password);
+
+                regUser(RegUser);
 
                 break;
 
@@ -54,8 +57,12 @@ public class UserRegister  extends AppCompatActivity implements View.OnClickList
         DB_Sever_Request.SaveUserDataInBackground(user, new GetUserCallBack() {
             @Override
             public void finished(User returnedUser) {
-                Intent intent = new Intent(UserRegister.this,UserLogin.class);
-            }
+
+
+                    Intent intent = new Intent(UserRegister.this, UserLogin.class);
+                    startActivity(intent);
+                }
+
         });
     }
 }

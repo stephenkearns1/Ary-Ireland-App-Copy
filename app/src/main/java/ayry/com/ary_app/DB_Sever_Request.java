@@ -70,7 +70,9 @@ public class DB_Sever_Request {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String,String> DBLoginCred = new HashMap<>();
-            DBLoginCred.put("username", user.userName);
+            DBLoginCred.put("name", user.name);
+            DBLoginCred.put("userName", user.userName);
+            DBLoginCred.put("email", user.email);
             DBLoginCred.put("password", user.password);
 
 
@@ -84,24 +86,26 @@ public class DB_Sever_Request {
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
 
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("username",user.userName)
-                        .appendQueryParameter("name",user.name)
+              /*  Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("name", user.name)
+                        .appendQueryParameter("userName",user.userName)
                         .appendQueryParameter("email",user.email)
                         .appendQueryParameter("password",user.password);
-                String query = builder.build().getEncodedQuery();
-                Log.d("Query", query);
+                String query = builder.build().getEncodedQuery(); */
+               // Log.d("Query", query);
 
                 OutputStream outStram = connection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(
                         new OutputStreamWriter(outStram,"UTF-8")
                 );
 
-                writer.write(query);
+                writer.write(getPostDataString(DBLoginCred));
                 writer.flush();
                 writer.close();
+                outStram.close();
 
-
+                int ResponseCode = connection.getResponseCode();
+                Log.d("ResponseCode", Integer.toString(ResponseCode));
 
 
             }catch (Exception e){

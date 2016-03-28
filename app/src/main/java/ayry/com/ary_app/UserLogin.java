@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Stephen Kearns on 09/03/2016.
@@ -17,6 +18,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
     Button LoginBtn;
     EditText userNameET, userPasswordET;
     DetailsUserStoreLocal DetailsUserStoreLocal;
+    TextView tvRegister;
 
     public void onCreate(Bundle  savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -25,9 +27,12 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
         userNameET = (EditText) findViewById(R.id.userName);
         userPasswordET = (EditText) findViewById(R.id.userPassword);
         LoginBtn = (Button) findViewById(R.id.loginBtn);
+        tvRegister = (TextView) findViewById(R.id.tvRegister);
+        tvRegister.setOnClickListener(this);
 
         LoginBtn.setOnClickListener(this);
         DetailsUserStoreLocal = new DetailsUserStoreLocal(this);
+
     }
 
     public void onClick(View v){
@@ -57,7 +62,9 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
                  break;
              case R.id.tvRegister:
                  //starts the register activity
+                 Log.i("make to reg case", "working");
                  Intent intent = new Intent(this,UserRegister.class);
+                 startActivity(intent);
                  break;
          }
     }
