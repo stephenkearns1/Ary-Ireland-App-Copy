@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
 
         for (int i = 0; i < listOfSops.size(); i++) {
-            //Error check - data is being retrived correctly
+            //Error check - data is being retrieved correctly
             Shop_items shop = listOfSops.get(i);
             Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
         }
@@ -294,9 +294,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 
 
-        adapter.clear();
-        //retrieves the data from the database, and populates the recylerView with the data received from the async task
-        getData();
+         adapter.clear();
+         //retrieves the data from the database, and populates the recylerView with the data received from the async task
+         getData();
+
+
+        rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
 
 
         //Create the data source and inflate the populated list view
