@@ -46,19 +46,23 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
     public void clear() {
         if(myShopItems != null && !myShopItems.isEmpty())
             myShopItems.clear();
-        notifyDataSetChanged();
+            notifyDataSetChanged();
     }
 
 
     //Constructor to retrive data from shop_items
-    public ShoplistAdapter(ArrayList<Shop_items> shopItmes){
-        myShopItems = shopItmes;
+    public ShoplistAdapter(ArrayList<Shop_items> myShopItems){
+        //this.myShopItems = new ArrayList<>();
+        this.myShopItems = myShopItems;
     }
 
-
+    // Adds the arraylist sent to the adapter
     public void addAll(ArrayList<Shop_items> shopItems){
         myShopItems.addAll(shopItems);
+
+        Log.i("Data sent to addAll", shopItems.toString());
         notifyDataSetChanged();
+
 
     }
 

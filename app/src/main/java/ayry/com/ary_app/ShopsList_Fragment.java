@@ -100,7 +100,8 @@ public class ShopsList_Fragment extends Fragment implements  View.OnClickListene
 
 
         //Create the adapter to convert array to view
-        ShoplistAdapter adapter = new ShoplistAdapter(listOfSops);
+        //ShoplistAdapter adapter = new ShoplistAdapter();
+
 
 
         /* Error bring caused here  java.lang.IllegalStateException: The specified child already has a parent. You must call removeView() on the child's parent first. */
@@ -109,7 +110,7 @@ public class ShopsList_Fragment extends Fragment implements  View.OnClickListene
        // mLayoutManger = new LinearLayoutManager(getActivity());
         rvShops.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
 
-        rvShops.setAdapter(adapter);
+        //rvShops.setAdapter(adapter);
 
         //Sets the layout manager to position the items
         //rvShops.setLayoutManager(mLayoutManger);

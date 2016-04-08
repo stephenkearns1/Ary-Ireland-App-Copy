@@ -97,20 +97,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userEmail = (TextView) navHeader.findViewById(R.id.emailTV);
 
 
-
-
-
         rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
+
 
         //retrieves the data from the database, and populates the recylerView with the data received from the async task
         getData();
+
+
+        // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
 
 
         //Create the data source and inflate the populated list view
         ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
 
         for (int i = 0; i < listOfSops.size(); i++) {
-            //Error check - data is being retrieved correctly
+            //Error check - data is being retrived correctly
             Shop_items shop = listOfSops.get(i);
             Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
         }
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Create the adapter to convert array to view
         adapter = new ShoplistAdapter(listOfSops);
+        //adapter.addAll(listOfSops);
 
 
         //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
@@ -126,12 +128,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         rvShops.setAdapter(adapter);
 
+
+
+
         //Set and click event on translator button to translate the text
         mTranlateBtn = (Button) findViewById(R.id.translationBtn);
 
         mTranlateBtn.setOnClickListener(this);
 
-        // mTranlateBtn.performClick();
+        //mTranlateBtn.performClick();
 
 
         // displayUsernameTV = (TextView) findViewById(R.id.usernameTV);
@@ -294,12 +299,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 
 
-         adapter.clear();
+
+
          //retrieves the data from the database, and populates the recylerView with the data received from the async task
          getData();
 
 
-        rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
+
+        adapter.clear();
+
+       // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
 
 
         //Create the data source and inflate the populated list view
@@ -316,15 +325,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addAll(listOfSops);
 
 
-        //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
-        // mLayoutManger = new LinearLayoutManager(getActivity());
-        rvShops.setLayoutManager(new LinearLayoutManager(this));
 
-        rvShops.setAdapter(adapter);
-        Toast toast = Toast.makeText(this, "Click working", Toast.LENGTH_SHORT);
-        toast.show();
-
-        Log.i("Click event", "Working");
     }
 
 
