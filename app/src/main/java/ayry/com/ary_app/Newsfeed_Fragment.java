@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by Stephen J Kearns on 15/02/2016.
  */
-public class Tab_Fragment2 extends Fragment{
+public class Newsfeed_Fragment extends Fragment{
 
     /*
          Code referance: http://guides.codepath.com/android/Google-Play-Style-Tabs-using-TabLayout
@@ -26,15 +26,15 @@ public class Tab_Fragment2 extends Fragment{
     }
 
     // new Instance constructor for creating fragment with arguments
-    public static Tab_Fragment2 newInstance(int page, String title){
+    public static Newsfeed_Fragment newInstance(int page, String title){
         //create new istance of the Tab_fragment1 class
-        Tab_Fragment2 tab_fragment2 = new Tab_Fragment2();
+        Newsfeed_Fragment newsfeed_fragment = new Newsfeed_Fragment();
         Bundle args = new Bundle();
         args.putInt("someInt", 2);
         args.putString("someTitle", title);
-        tab_fragment2.setArguments(args);
+        newsfeed_fragment.setArguments(args);
 
-        return tab_fragment2;
+        return newsfeed_fragment;
     }
 
 

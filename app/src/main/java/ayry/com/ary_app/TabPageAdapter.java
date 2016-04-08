@@ -45,7 +45,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
             case 0:
                 return ShopsList_Fragment.newInstance(1, "Second fragment shoplist");
             case 1:
-                return Tab_Fragment2.newInstance(2, "Third Fragment ");
+                return Newsfeed_Fragment.newInstance(2, "Third Fragment ");
             default:
                 Log.i(TAG, "Using default case which is NULL" + position); //example of how to log
                 return null;

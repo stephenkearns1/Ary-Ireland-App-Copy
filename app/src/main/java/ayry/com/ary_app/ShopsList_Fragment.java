@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ import java.util.ArrayList;
  * Created by Stephen J Kearns on 15/02/2016.
  */
 
-public class ShopsList_Fragment extends Fragment {
+public class ShopsList_Fragment extends Fragment implements  View.OnClickListener {
 
      /*
           Code referance: http://guides.codepath.com/android/Google-Play-Style-Tabs-using-TabLayout
@@ -29,7 +31,8 @@ public class ShopsList_Fragment extends Fragment {
      */
 
     protected RecyclerView.LayoutManager mLayoutManger;
-
+    private ObjectRequestHolder objWrapper;
+    private Button mTranlateBtn;
     //for test purposes
     private static String TAG = "checkUser data";
 
@@ -45,7 +48,14 @@ public class ShopsList_Fragment extends Fragment {
         //what ever you want to do with arguments when returned....
 
 
-       // populateList();
+         objWrapper = new ObjectRequestHolder();
+        //retrive the data from the database
+        getData();
+
+
+
+
+        //Trying to get a referance to the button in the main activity as to be able to attach an event listner to it
 
 
     }
@@ -71,7 +81,7 @@ public class ShopsList_Fragment extends Fragment {
         RecyclerView rvShops = (RecyclerView) rootview.findViewById(R.id.rvshoplist);
 
         //Create the data source and inflate the populated list view
-        ArrayList<Shop_items> listOfSops = Shop_items.getShopItems();
+        ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
 
         for(int i = 0; i < listOfSops.size(); i ++){
             //Error check - data is being retrived correctly
@@ -79,13 +89,23 @@ public class ShopsList_Fragment extends Fragment {
             Log.i(TAG, shop.getTitle() + ", " + shop.getDesc());
         }
 
+
+
+        View rootview2 = inflater.inflate(R.layout.activity_main, container, false);
+
+        //Set and click event on translator button to translate the text
+        mTranlateBtn = (Button) rootview2.findViewById(R.id.translationBtn);
+
+        mTranlateBtn.setOnClickListener(this);
+
+
         //Create the adapter to convert array to view
         ShoplistAdapter adapter = new ShoplistAdapter(listOfSops);
 
 
         /* Error bring caused here  java.lang.IllegalStateException: The specified child already has a parent. You must call removeView() on the child's parent first. */
 
-        //LinearLayoutManager is used here, this will layoutthe elements in a similair fashion
+        //LinearLayoutManager is used here, this will lays out elements in a similar fashion
        // mLayoutManger = new LinearLayoutManager(getActivity());
         rvShops.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
 
@@ -95,8 +115,59 @@ public class ShopsList_Fragment extends Fragment {
         //rvShops.setLayoutManager(mLayoutManger);
 
 
+
         return rootview;
     }
+
+
+    public void getData(){
+
+        DB_Sever_Request dbRequest = new DB_Sever_Request(getActivity());
+        dbRequest.PullShopData(new GetUserCallBack() {
+            @Override
+            public void finished(ObjectRequestHolder obj) {
+                ArrayList<Shop_items> shops = obj.getShopList();
+                if(shops == null){
+                    Log.i("array retuend", "ShopsList reutrned is equal to null");
+                }
+
+                else if(shops.size() == 0){
+
+                }else{
+                    for(int i = 0; i < shops.size(); i++){
+                        Shop_items myshop = shops.get(i);
+                        Log.i("result",myshop.getTitle() + myshop.getDesc());
+
+                    }
+                    //sends a reference to the object return to be accessible
+                  dataSource(obj);
+
+                }
+
+            }
+
+        });
+
+
+    }
+
+
+    public void dataSource(ObjectRequestHolder requestObj){
+        //sets the reference to the object to the object in this class for acceptability between
+        this.objWrapper = requestObj;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast toast = Toast.makeText(context,"Click working" ,Toast.LENGTH_SHORT);
+        toast.show();
+
+        Log.i("Click event","Working");
+
+
+    }
+
 
 /* ArrayAdapter with list view method
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

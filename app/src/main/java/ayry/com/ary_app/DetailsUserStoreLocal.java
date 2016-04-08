@@ -10,6 +10,7 @@ public class DetailsUserStoreLocal {
 
     public static final String SP_NAME = "UserAccountDetails";
     SharedPreferences userLocalDB; //used so data can be stored locally
+    static User user;
 
     public DetailsUserStoreLocal(Context context){
         userLocalDB = context.getSharedPreferences(SP_NAME,0);
@@ -17,21 +18,25 @@ public class DetailsUserStoreLocal {
 
     //stores users details locally
     public void storeUserDetails(User user){
+        this.user = user;
         SharedPreferences.Editor spEditor = userLocalDB.edit();
+
+        spEditor.putString("name", user.name);
         spEditor.putString("userName", user.userName);
-        //spEditor.putString("name", user.name);
-       // spEditor.putString("email", user.email);
+        spEditor.putString("email", user.email);
         spEditor.putString("password", user.password);
         spEditor.commit();
     }
 
     //checks if users is logged in i,e true of if not i,e false
     public User UserLoggedIn(){
+        String name = userLocalDB.getString("name", "");
         String userName = userLocalDB.getString("username", "");
-        String password = userLocalDB.getString("password","");
+        String email = userLocalDB.getString("email", "");
+        String password = userLocalDB.getString("password", "");
 
-        User newUser = new User(userName,password);
-        return newUser;
+        user = new User(name,userName, email,password);
+        return user;
     }
 
     //set user who is logged in

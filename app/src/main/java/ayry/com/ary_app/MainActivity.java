@@ -8,6 +8,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,12 +20,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.zip.Inflater;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     FragmentPagerAdapter FragmentPagerAdapter;
     DrawerLayout mDrawerLayot;
     DetailsUserStoreLocal userLocaldetails;
+    TextView displayUsernameTV;
+    TextView displayUseremailTV;
+    private ObjectRequestHolder objWrapper;
+    Button mTranlateBtn;
+    RecyclerView rvShops;
+    ShoplistAdapter adapter;
+    TextView userEmail;
+    TextView userName;
 
 
     @Override
@@ -43,16 +62,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-
         //sets up ViewPage adapter
-        ViewPager myViewPag = (ViewPager) findViewById(R.id.pager);
-        FragmentPagerAdapter = new TabPageAdapter(getSupportFragmentManager());
-        myViewPag.setAdapter(FragmentPagerAdapter);
+
+        //  ViewPager myViewPag = (ViewPager) findViewById(R.id.pager);
+        // FragmentPagerAdapter = new TabPageAdapter(getSupportFragmentManager());
+        //  myViewPag.setAdapter(FragmentPagerAdapter);
 
         //pass the tab to the page view
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(myViewPag);
+        // TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        // tabLayout.setupWithViewPager(myViewPag);
 
+
+        // Sets up the navigation drawer and adds an on Navigation drawer
         mDrawerLayot = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayot, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,33 +84,105 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        //Creates a new instance of the ObjectRequest holder which is used as a wrapper for passing objects between Async task and the activities class
+        objWrapper = new ObjectRequestHolder();
+
+
         userLocaldetails = new DetailsUserStoreLocal(this);
 
 
+        //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
+        View navHeader =  navigationView.getHeaderView(0);
+        userName = (TextView) navHeader.findViewById(R.id.usernameTV);
+        userEmail = (TextView) navHeader.findViewById(R.id.emailTV);
+
+
+
+
+
+        rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
+
+        //retrieves the data from the database, and populates the recylerView with the data received from the async task
+        getData();
+
+
+        //Create the data source and inflate the populated list view
+        ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
+
+        for (int i = 0; i < listOfSops.size(); i++) {
+            //Error check - data is being retrived correctly
+            Shop_items shop = listOfSops.get(i);
+            Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
+        }
+
+
+        //Create the adapter to convert array to view
+        adapter = new ShoplistAdapter(listOfSops);
+
+
+        //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
+        // mLayoutManger = new LinearLayoutManager(getActivity());
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
+
+        rvShops.setAdapter(adapter);
+
+        //Set and click event on translator button to translate the text
+        mTranlateBtn = (Button) findViewById(R.id.translationBtn);
+
+        mTranlateBtn.setOnClickListener(this);
+
+        // mTranlateBtn.performClick();
+
+
+        // displayUsernameTV = (TextView) findViewById(R.id.usernameTV);
+        //  displayUseremailTV = (TextView) findViewById(R.id.emailTV);
+
+        //  displayUseremailTV.setText("working in oncreate");
+        // onStart();
 
     }
 
-
-    protected void onStart(){
+    @Override
+    protected void onStart() {
         super.onStart();
 
-        if(authenticate()==true){
+        if (authenticate() == true) {
             //display logged in or start main activity
-        }else{
+            displayUserDetails();
+        } else {
             //starts loginIn activity
+            Intent intent = new Intent(this, UserLogin.class);
+            startActivity(intent);
         }
 
     }
 
-    private boolean authenticate(){
-      return  userLocaldetails.getLoggedIn();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userLocaldetails.getLoggedIn());
+        return userLocaldetails.getLoggedIn();
     }
 
 
-
-    private void displayUserDetails(){
+    private void displayUserDetails() {
         User user = userLocaldetails.UserLoggedIn();
-        //set drawer info with the info of the logged in user
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail());
+        userName.setText(user.getName());
+        userEmail.setText(user.getEmail());
+
+
+        Log.i("user Loggedin", user.getUserName() + user.getEmail());
+
+
     }
 
 
@@ -143,6 +236,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            userLocaldetails.clearUserData();
+            User user = userLocaldetails.UserLoggedIn();
+            Log.i("User details clear", user.getEmail());
+            Intent intent = new Intent(this, UserLogin.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
@@ -154,4 +252,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    public void getData() {
+
+        DB_Sever_Request dbRequest = new DB_Sever_Request(this);
+        dbRequest.PullShopData(new GetUserCallBack() {
+            @Override
+            public void finished(ObjectRequestHolder obj) {
+                ArrayList<Shop_items> shops = obj.getShopList();
+                if (shops == null) {
+                    Log.i("array retuend", "ShopsList reutrned is equal to null");
+                } else if (shops.size() == 0) {
+
+                } else {
+                    for (int i = 0; i < shops.size(); i++) {
+                        Shop_items myshop = shops.get(i);
+                        Log.i("result", myshop.getTitle() + myshop.getDesc());
+
+                    }
+                    //sends a reference to the object return to be accessible
+                    dataSource(obj);
+
+                }
+
+            }
+
+        });
+
+
+    }
+
+
+    public void dataSource(ObjectRequestHolder requestObj) {
+        //sets a reference to the object in this class for for accessibility between the object in the holder ObjectRequestHolder class
+        this.objWrapper = requestObj;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+
+        adapter.clear();
+        //retrieves the data from the database, and populates the recylerView with the data received from the async task
+        getData();
+
+
+        //Create the data source and inflate the populated list view
+        ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
+
+        for (int i = 0; i < listOfSops.size(); i++) {
+            //Error check - data is being retrived correctly
+            Shop_items shop = listOfSops.get(i);
+            Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
+        }
+
+
+        //Create the adapter to convert array to view
+        adapter.addAll(listOfSops);
+
+
+        //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
+        // mLayoutManger = new LinearLayoutManager(getActivity());
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
+
+        rvShops.setAdapter(adapter);
+        Toast toast = Toast.makeText(this, "Click working", Toast.LENGTH_SHORT);
+        toast.show();
+
+        Log.i("Click event", "Working");
+    }
+
+
 }

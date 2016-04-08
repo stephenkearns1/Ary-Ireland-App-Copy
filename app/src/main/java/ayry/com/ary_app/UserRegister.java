@@ -30,7 +30,7 @@ public class UserRegister  extends AppCompatActivity implements View.OnClickList
     }
 
     public void onClick(View v){
-        switch(v.getId()){
+        switch(v.getId()) {
             case R.id.RegBtn:
 
                 //retrive data entred by user
@@ -39,24 +39,30 @@ public class UserRegister  extends AppCompatActivity implements View.OnClickList
                 String email = userEmailET.getText().toString();
                 String password = userPasswordET.getText().toString();
 
-                User RegUser = new User(name,username,email,password);
+                User RegUser = new User(name, username, email, password);
+                ObjectRequestHolder requestObj = new ObjectRequestHolder();
 
-                regUser(RegUser);
+                requestObj.setUserApp(RegUser);
+
+                regUser(requestObj);
 
                 break;
 
             case R.id.tvLogin:
-                Intent intent = new Intent(this,UserLogin.class);
+                Intent intent = new Intent(this, UserLogin.class);
+                startActivity(intent);
                 //Return to login page
                 break;
         }
     }
 
-    private void regUser(User user){
+    //private void regUser(User user){
+    private void regUser(ObjectRequestHolder requestObj){
+
         DB_Sever_Request  DB_Sever_Request = new  DB_Sever_Request(this);
-        DB_Sever_Request.SaveUserDataInBackground(user, new GetUserCallBack() {
+        DB_Sever_Request.SaveUserDataInBackground(requestObj.getUserApp(), new GetUserCallBack() {
             @Override
-            public void finished(User returnedUser) {
+            public void finished(ObjectRequestHolder returnedUser) {
 
 
                     Intent intent = new Intent(UserRegister.this, UserLogin.class);

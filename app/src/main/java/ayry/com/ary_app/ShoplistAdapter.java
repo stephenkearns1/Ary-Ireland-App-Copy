@@ -43,16 +43,31 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
     }
 
 
+    public void clear() {
+        if(myShopItems != null && !myShopItems.isEmpty())
+            myShopItems.clear();
+        notifyDataSetChanged();
+    }
+
+
     //Constructor to retrive data from shop_items
     public ShoplistAdapter(ArrayList<Shop_items> shopItmes){
         myShopItems = shopItmes;
     }
 
+
+    public void addAll(ArrayList<Shop_items> shopItems){
+        myShopItems.addAll(shopItems);
+        notifyDataSetChanged();
+
+    }
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)  {
 
-       // Context context = parent.getContext();
-      //  LayoutInflater inflater = LayoutInflater.from(context);
+        // Context context = parent.getContext();
+        //  LayoutInflater inflater = LayoutInflater.from(context);
 
 
         //inflate the custom shop list row
@@ -90,7 +105,9 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+
         return myShopItems.size();
+
     }
 
 

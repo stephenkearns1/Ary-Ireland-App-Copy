@@ -48,12 +48,16 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
                      String password = userPasswordET.getText().toString();
 
                      User user = new User(userName, password);
+                     ObjectRequestHolder requestObj = new ObjectRequestHolder();
+
+                     requestObj.setUserApp(user);
+
 
                      //checker, for variable being sent to server request
                      Log.i("Data being sent autent", user.getUserName() + " " + user.getPassword());
 
                      //checks to see if the user creds correspond to a user store in the database
-                     authenticate(user);
+                     authenticate(requestObj);
 
                      //do on click listner here
 
@@ -74,11 +78,26 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
         if not a alert is shown incorrect details, if the cred match then the user is logged in
     */
 
-    public void  authenticate(User user){
+   /* public void  authenticate(User user){
         DB_Sever_Request dbRequest = new DB_Sever_Request(this);
         dbRequest.RequestUserDataInBackground(user, new GetUserCallBack() {
             @Override
             public void finished(User returnedUser) {
+                if (returnedUser == null){
+                    showErrorMsg();
+                }else{
+                    LogUserIn(returnedUser);
+                }
+            }
+        });
+    }*/
+
+    public void  authenticate(ObjectRequestHolder requestObj){
+        DB_Sever_Request dbRequest = new DB_Sever_Request(this);
+        dbRequest.RequestUserDataInBackground(requestObj.getUserApp(), new GetUserCallBack() {
+            @Override
+            public void finished(ObjectRequestHolder obj) {
+                User returnedUser = obj.getUserApp();
                 if (returnedUser == null){
                     showErrorMsg();
                 }else{
@@ -96,11 +115,17 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
     }
 
     public  void LogUserIn(User userReturned){
-        DetailsUserStoreLocal.storeUserDetails(userReturned);
-        DetailsUserStoreLocal.setUserLoggedIn(true);
+        if(userReturned == null){
+            Log.i("Object returned", "Is null");
+        }else {
+            DetailsUserStoreLocal.storeUserDetails(userReturned);
+            DetailsUserStoreLocal.setUserLoggedIn(true);
 
-        //start the main activity
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+            Log.i("object returned name:", userReturned.userName);
+
+            //start the main activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
