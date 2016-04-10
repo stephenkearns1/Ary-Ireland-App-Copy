@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name:"
+        android:text="@string/user_name_lbl"
         android:id="@+id/nameTV"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -29,4 +29,67 @@
         android:layout_alignTop="@+id/nameTV"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/username_lbl"
+        android:id="@+id/userNameHolderTv"
+        android:layout_below="@+id/userNameTV"
+        android:layout_alignLeft="@+id/nameTV"
+        android:layout_alignStart="@+id/nameTV"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/usernameTV"
+        android:layout_alignTop="@+id/userNameHolderTv"
+        android:layout_alignRight="@+id/userNameTV"
+        android:layout_alignEnd="@+id/userNameTV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/user_email_lbl"
+        android:id="@+id/emailHolder"
+        android:layout_marginTop="246dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/userNameHolderTv"
+        android:layout_alignStart="@+id/userNameHolderTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Textu"
+        android:id="@+id/userEmailTV"
+        android:layout_alignTop="@+id/emailHolder"
+        android:layout_alignRight="@+id/userNameTV"
+        android:layout_alignEnd="@+id/userNameTV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/user_password_lbl"
+        android:id="@+id/passwordHolder"
+        android:layout_marginTop="358dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/emailHolder"
+        android:layout_alignStart="@+id/emailHolder" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/userPasswordTV"
+        android:layout_alignTop="@+id/passwordHolder"
+        android:layout_alignRight="@+id/userNameTV"
+        android:layout_alignEnd="@+id/userNameTV" />
 </RelativeLayout>
