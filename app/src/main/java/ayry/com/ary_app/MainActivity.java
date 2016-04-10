@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-
         if (authenticate() == true) {
             //display logged in or start main activity
             displayUserDetails();
@@ -297,18 +296,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
-
-
-
-
-         //retrieves the data from the database, and populates the recylerView with the data received from the async task
-         getData();
+     /*
+        //retrieves the data from the database, and populates the recylerView with the data received from the async task
+        getData();
 
 
 
         adapter.clear();
 
-       // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
+        // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
 
 
         //Create the data source and inflate the populated list view
@@ -324,6 +320,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Create the adapter to convert array to view
         adapter.addAll(listOfSops);
 
+
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
+
+
+
+      */
+
+        //retrieves the data from the database, and populates the recylerView with the data received from the async task
+        getData();
+
+
+        // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
+
+
+        //Create the data source and inflate the populated list view
+        ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
+
+        //Create the adapter to convert array to view
+        adapter = new ShoplistAdapter(listOfSops);
+        //adapter.addAll(listOfSops);
+
+
+        //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
+        // mLayoutManger = new LinearLayoutManager(getActivity());
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
+
+        rvShops.setAdapter(adapter);
 
 
     }

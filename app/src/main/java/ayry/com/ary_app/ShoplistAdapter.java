@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Stephen Kearns on 05/03/2016.
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHolder>{
 
     private ArrayList<Shop_items> myShopItems;
+
 
 
 
@@ -51,9 +53,13 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
 
 
     //Constructor to retrive data from shop_items
-    public ShoplistAdapter(ArrayList<Shop_items> myShopItems){
+ /*   public ShoplistAdapter(ArrayList<Shop_items> myShopItems){
         //this.myShopItems = new ArrayList<>();
         this.myShopItems = myShopItems;
+    } */
+
+    public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {
+        myShopItems = listOfSops;
     }
 
     // Adds the arraylist sent to the adapter
