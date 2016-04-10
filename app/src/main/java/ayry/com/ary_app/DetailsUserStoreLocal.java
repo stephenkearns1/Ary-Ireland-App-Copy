@@ -31,7 +31,7 @@ public class DetailsUserStoreLocal {
     //checks if users is logged in i,e true of if not i,e false
     public User UserLoggedIn(){
         String name = userLocalDB.getString("name", "");
-        String userName = userLocalDB.getString("username", "");
+        String userName = userLocalDB.getString("userName", "");
         String email = userLocalDB.getString("email", "");
         String password = userLocalDB.getString("password", "");
 

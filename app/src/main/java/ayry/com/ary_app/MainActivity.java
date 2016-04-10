@@ -240,10 +240,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-            userLocaldetails.clearUserData();
-            User user = userLocaldetails.UserLoggedIn();
-            Log.i("User details clear", user.getEmail());
-            Intent intent = new Intent(this, UserLogin.class);
+           // userLocaldetails.clearUserData();
+           // User user = userLocaldetails.UserLoggedIn();
+           // Log.i("User details clear", user.getEmail());
+            Intent intent = new Intent(this, AccountSettingsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
