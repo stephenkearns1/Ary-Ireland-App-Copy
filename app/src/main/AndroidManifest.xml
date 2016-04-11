@@ -60,6 +60,7 @@
         <activity
             android:name=".UserRegister"
             android:label="UserReg" />
+
         <activity
             android:name=".AccountSettingsActivity"
             android:label="@string/title_activity_main2"
