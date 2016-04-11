@@ -1,5 +1,6 @@
 package ayry.com.ary_app;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,20 +58,42 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
         //this.myShopItems = new ArrayList<>();
         this.myShopItems = myShopItems;
     } */
-   public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {myShopItems = listOfSops;}
+   public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {myShopItems = listOfSops;
+
+     notifyDataSetChanged();
+   }
+
 
     //public ShoplistAdapter() {myShopItems = new ArrayList<>();}
 
     // Adds the arraylist sent to the adapter
     //not receiving arraylist of objects
     public void addAll(ArrayList<Shop_items> shopItems){
+        for(int i = 0; i < shopItems.size(); i++){
+            Shop_items shop = shopItems.get(i);
+            Log.i("Data sent to addAll", shop.toString());
+        }
         myShopItems.clear();
-        myShopItems.addAll(shopItems)
+        myShopItems.addAll(shopItems);
        // myShopItems.addAll(shopItems);
 
         Log.i("Data sent to addAll", myShopItems.toString());
         notifyDataSetChanged();
 
+
+    }
+
+    public void swapData(ArrayList<Shop_items> updatedShopList){
+
+            for(int i = 0; i < updatedShopList.size(); i++){
+                Shop_items shop = updatedShopList.get(i);
+                Log.i("Data sent to swap", shop.getTitle() + shop.getDesc());
+
+            }
+
+            this.myShopItems = updatedShopList;
+            myShopItems.addAll(updatedShopList);
+            notifyDataSetChanged();
 
     }
 

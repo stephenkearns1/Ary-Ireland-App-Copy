@@ -63,8 +63,9 @@
         <activity
             android:name=".AccountSettingsActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".EventsSearchActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EventsSearchActivity" />
+        <activity android:name=".EventsSearchResultsActivity"></activity>
     </application>
 
 </manifest>

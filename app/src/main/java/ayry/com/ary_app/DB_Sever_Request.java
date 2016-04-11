@@ -384,7 +384,7 @@ public class DB_Sever_Request {
 
 
                 String response = stringBuilder.toString();
-                Log.d("response", response);
+               // Log.d("response", response);
 
                 if (requestToMake.equals("login")) {
                     //returns json as a object
@@ -499,7 +499,7 @@ public class DB_Sever_Request {
                 resultSB.append(URLEncoder.encode(entry.getValue(),"UTF-8"));
             }
 
-            Log.i("Value", resultSB.toString());
+         //   Log.i("Value", resultSB.toString());
             return resultSB.toString();
 
 
