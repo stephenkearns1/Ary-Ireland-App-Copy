@@ -115,28 +115,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Shop_items shop = listOfSops.get(i);
             Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
         }
-
-
-        //Create the adapter to convert array to view
         adapter = new ShoplistAdapter(listOfSops);
-        //adapter.addAll(listOfSops);
 
 
+
+
+        adapter.notifyDataSetChanged();
         //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
         // mLayoutManger = new LinearLayoutManager(getActivity());
         rvShops.setLayoutManager(new LinearLayoutManager(this));
 
         rvShops.setAdapter(adapter);
 
-
-
-
         //Set and click event on translator button to translate the text
         mTranlateBtn = (Button) findViewById(R.id.translationBtn);
 
         mTranlateBtn.setOnClickListener(this);
 
-        //mTranlateBtn.performClick();
+       // mTranlateBtn.performClick();
 
 
         // displayUsernameTV = (TextView) findViewById(R.id.usernameTV);
@@ -331,6 +327,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
       */
 
+
         //retrieves the data from the database, and populates the recylerView with the data received from the async task
         getData();
 
@@ -341,16 +338,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Create the data source and inflate the populated list view
         ArrayList<Shop_items> listOfSops = objWrapper.getShopList();
 
+        for (int i = 0; i < listOfSops.size(); i++) {
+            //Error check - data is being retrived correctly
+            Shop_items shop = listOfSops.get(i);
+            Log.i("Values", shop.getTitle() + ", " + shop.getDesc());
+        }
+
+
         //Create the adapter to convert array to view
-        adapter = new ShoplistAdapter(listOfSops);
-        //adapter.addAll(listOfSops);
+       // adapter = new ShoplistAdapter();
+        adapter.clear();
+        adapter.addAll(listOfSops);
+
+        adapter.notifyDataSetChanged();
+
+       // rvShops.setAdapter(adapter);
 
 
-        //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
-        // mLayoutManger = new LinearLayoutManager(getActivity());
-        rvShops.setLayoutManager(new LinearLayoutManager(this));
 
-        rvShops.setAdapter(adapter);
 
 
     }

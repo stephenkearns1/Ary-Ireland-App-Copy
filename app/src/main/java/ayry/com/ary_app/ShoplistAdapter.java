@@ -57,16 +57,18 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
         //this.myShopItems = new ArrayList<>();
         this.myShopItems = myShopItems;
     } */
+   public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {myShopItems = listOfSops;}
 
-    public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {
-        myShopItems = listOfSops;
-    }
+    //public ShoplistAdapter() {myShopItems = new ArrayList<>();}
 
     // Adds the arraylist sent to the adapter
+    //not receiving arraylist of objects
     public void addAll(ArrayList<Shop_items> shopItems){
-        myShopItems.addAll(shopItems);
+        myShopItems.clear();
+        myShopItems.addAll(shopItems)
+       // myShopItems.addAll(shopItems);
 
-        Log.i("Data sent to addAll", shopItems.toString());
+        Log.i("Data sent to addAll", myShopItems.toString());
         notifyDataSetChanged();
 
 
