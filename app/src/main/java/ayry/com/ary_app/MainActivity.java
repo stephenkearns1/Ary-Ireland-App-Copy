@@ -234,7 +234,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
-
+           //this is were a intent will be started for the newsfeed activity
+            Intent intent = new Intent(this, NewsfeedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
            // userLocaldetails.clearUserData();
            // User user = userLocaldetails.UserLoggedIn();
