@@ -1,3 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.0_ccfec7c1992df8047277332d5a895674684ff9af.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dfecc4d835cdabcdecf7e95f0d20a3ef1e9d8ef4">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-8.4.0_143b3f2da55ced75bb82100b0b18290b7ff1f881.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-8.4.0_6dc2efc36a6cf4369af81862bcd89448b8f68bae.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_57946bd47dcd8c5d2eca5f81050b27d5ef5986ad.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-8.4.0_abfe754cac4ea13014e4048da2697b216b0127b1.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0_571fcbfa39e30598e53a896d9224da28300ae73f.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-8.4.0_849b6d4c198060b456716c4f9a3f4188891c1295.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="966e5771a5a2ebfb31bf00d7cd6cd2546d245517">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-8.4.0_63d3ec4adf9424a073025d40fdf55c2cf69e58dd.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-8.4.0_a7df1c783a0bbfe6b0286f4f28b9c62583217601.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\design\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1aa5b025efe97f5006f5be16d6ca67c6c3c0c0d8">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.2.0_e5b025ef3ab5ce3cf1be09b704d73a590be554d7.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.4.0_a4817660f5b9814e634f5a51aec993d411611e53.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-8.4.0_fc2632d72fb8e595187cfc8020f66714bf9f9103.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-8.4.0_844da2b3ccbb5dcc986834381cb549b3e13f0cb4.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-8.4.0_b02e2c9d97a4e2f7726b672dca800011fb17cdd0.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.0_bd29db578b2a02e4bfdb8e059298970983cc42f5.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-measurement-8.4.0_73b720ac770fd1268d1a845058c475ad96923686.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-8.4.0_9e05121ba61230ba3ca61381eb67c8b658a563d3.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-8.4.0_c9588cdac10c673bf73189338377113c2db639e5.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.0_0f3c7eee71a2cb831c4f56d3ecf4c29ef9e4a2b6.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.4.0_7be01108029b8fa9612257b65fa19818ae8cb20f.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-8.4.0_6f0cdddab72cdf441d99379f69543c83a3384a83.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="04de44f90606c77f3b28cf44861f306290505aac">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-8.4.0_daeb1d3d9817de55966b93c528bab2b5145233c8.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.0_ce15eeaa5635693879ddbc21a2a09084b6d2f1eb.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0_91b46923d2bcdfb533876b4e485d5d7324d7fb8d.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-8.4.0_1165b137e032fb20b9fb490760092fa15a9f3570.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9cad249cf62751a323d9af568caf12284b7d6062">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-8.4.0_0a95cf4cc7f45cfef54b148504c9050f79f6832c.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-23.0.0_6236b4eabd975aa9487f44b363a16699df84cca7.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-8.4.0_43ec77b216d1b9c8ff2ea40d107ceaa247214dfd.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-8.4.0_bf4a27390d5a5b9e9eabd59ee34fa938a2017b06.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.2.0_be1d704857fa950fec2201e225283089a9a9807c.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-8.4.0_f842e52d9b4f5720d4449ce523db438bb5a61c30.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-8.4.0_de80ff4c14ec5d84462912b581caaa67834e0dcf.jar" />
+    </item>
+    <item
+        jar="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
+        <dex dex="C:\Users\kearn\Desktop\ITP-project-Ary-Ireland-app\Ary-Ireland-App-Copy\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-8.4.0_04f46020ca52944dcecc21757b26b6f8f7df502a.jar" />
+    </item>
+
+</items>
