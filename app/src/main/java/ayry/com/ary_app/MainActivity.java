@@ -1,6 +1,7 @@
 package ayry.com.ary_app;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,8 +31,11 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import ayry.com.ary_app.AppController;
+
+//imports for microsoft api
+import com.memetix.mst.language.Language;
+import com.memetix.mst.translate.Translate;
 
 import java.util.ArrayList;
 
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SwipeRefreshLayout mSwipeRefreshLayout;
     ArrayList<Shop_items> listOfShops;
     ArrayList<Shop_items> tempShopList;
+    ArrayList<Shop_items> listOfShopsArabic;
+
+
 
 
     /* used for parsing json */
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         listOfShops = new ArrayList<>();
         tempShopList = new ArrayList<>();
+        listOfShopsArabic = new ArrayList<>();
 
 
     }
@@ -329,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             for(int i = 0; i < listOfShops.size(); i++){
                 tempShopList.add(listOfShops.get(i));
-                Shop_items shop =tempShopList.get(i);
+                Shop_items shop = tempShopList.get(i);
                 Log.d("Data tempLst", "data in temp list after update called");
                 Log.d("data", shop.getTitle() + " " +  shop.getDesc());
             }
@@ -337,6 +345,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             adapter.addAll(tempShopList);
         }
 
+    }
+
+    /* the microsoft translator api */
+
+    public void convertToArabic() {
+
+        new MyAsyncTask() {
+            protected void onPostExecute(Boolean result) {
+                for(int i = 0; i < listOfShopsArabic.size(); i++){
+                    //testing translation
+                    Shop_items shop = listOfShopsArabic.get(i);
+                    Log.i("Translate Arabic","The translated data is:");
+                    Log.d("data Arabic", shop.getTitle());
+                    Log.d("data Arabic", shop.getDesc());
+
+                }
+            }
+        }.execute();
+
+
+
+    }
+
+    class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... arg0) {
+            Translate.setClientId("Ary-Ireland-app");
+            Translate.setClientSecret("OKuiH1Dq2uXViCmt7Mh5GC8nBE1IJA5UE7YAde1H6dQ=");
+            try {
+
+                for(int i = 0; i < listOfShops.size(); i++){
+                    Shop_items shopsAr = listOfShops.get(i);
+                    String shopTitleAr = Translate.execute(shopsAr.getTitle(), Language.ENGLISH, Language.ARABIC);
+                    String shopDescAr = Translate.execute(shopsAr.getTitle(), Language.ENGLISH, Language.ARABIC);
+
+                    Shop_items newShopArabic = new Shop_items(shopsAr.id, "", shopTitleAr, shopDescAr);
+                    listOfShopsArabic.add(newShopArabic);
+                }
+
+            } catch (Exception e) {
+                Log.d("Error translating",e.toString());
+            }
+            return true;
+        }
     }
 
     public void newShopList() {
@@ -379,6 +431,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             }
                                updateList();
+                               convertToArabic();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.i("JSONError", e.toString());
