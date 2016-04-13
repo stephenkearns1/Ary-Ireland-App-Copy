@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,7 +35,7 @@ import ayry.com.ary_app.AppController;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     FragmentPagerAdapter FragmentPagerAdapter;
     DrawerLayout mDrawerLayot;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ShoplistAdapter adapter;
     TextView userEmail;
     TextView userName;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     ArrayList<Shop_items> listOfShops;
     ArrayList<Shop_items> tempShopList;
 
@@ -112,30 +115,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swpie_refresh_layout);
         rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
-
-
-        //retrieves the data from the database, and populates the recylerView with the data received from the async task
-        // getData();
-
-
-        // rvShops = (RecyclerView) findViewById(R.id.rvshoplist);
-
-
-        //Create the data source and inflate the populated list view
-       // listOfShops = objWrapper.getShopList();
-
 
         adapter = new ShoplistAdapter();
 
-
         adapter.notifyDataSetChanged();
         //LinearLayoutManager is used here, this lays out elements in a similar linear fashion
-        // mLayoutManger = new LinearLayoutManager(getActivity());
         rvShops.setLayoutManager(new LinearLayoutManager(this));
 
         rvShops.setAdapter(adapter);
+
+        // Event listen which listens for refresh event when one happens the UpdateList method will be called,
+        // This will update the data with the new data retrived form the server
+        // sets the colors used in the refresh animation
+
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_dark,
+                android.R.color.holo_blue_dark,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark
+        );;
+
+        //retrieves the data from the database, and populates the recylerView with the data received from the async task
+
+
+
 
         //Set and click event on translator button to translate the text
         mTranlateBtn = (Button) findViewById(R.id.translationBtn);
@@ -337,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void newShopList() {
 
         //start the volley jsonRequest
+        mSwipeRefreshLayout.setRefreshing(true);
         String url = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/App-scripts/PullShopData.php";
         JsonArrayRequest request = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -381,6 +387,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 Log.d("Pulling ShopData", "Error" + error.getMessage());
             }
         });
@@ -400,6 +407,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onRefresh() {
+        Toast.makeText(MainActivity.this, "Swipe refresh working", Toast.LENGTH_SHORT).show();
+        newShopList();
     }
 }//end of class
 
