@@ -35,9 +35,9 @@ public class NewsfeedActivity extends AppCompatActivity {
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
         }
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new NewsfeedRecylerViewAdapter(getApplicationContext());
+        adapter = new NewsfeedRecylerViewAdapter(this);
 
         //loadData();
 
@@ -51,14 +51,14 @@ public class NewsfeedActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     private void loadData(){

@@ -429,6 +429,7 @@ public class DB_Sever_Request {
                         Log.i("shopname",shopname);
                         Log.i("shopdesc", shopdesc);
                         Log.i("shopgeo", shopgeo);
+
                         Shop_items shop = new Shop_items(id,"",shopname,shopdesc);
                         requesrObj.addShop(shop);
 

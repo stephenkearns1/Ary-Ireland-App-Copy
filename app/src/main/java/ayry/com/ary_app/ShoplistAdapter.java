@@ -46,11 +46,7 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
     }
 
 
-    public void clear() {
-        if(myShopItems != null && !myShopItems.isEmpty())
-            myShopItems.clear();
-            notifyDataSetChanged();
-    }
+
 
 
     //Constructor to retrive data from shop_items
@@ -58,10 +54,36 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
         //this.myShopItems = new ArrayList<>();
         this.myShopItems = myShopItems;
     } */
-   public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {myShopItems = listOfSops;
+   //public ShoplistAdapter(ArrayList<Shop_items> listOfSops) {myShopItems = listOfSops; notifyDataSetChanged();}
+    public ShoplistAdapter(){
+        this.myShopItems = new ArrayList<>();
+    }
 
-     notifyDataSetChanged();
-   }
+
+    public void clear() {
+        if(myShopItems != null && !myShopItems.isEmpty())
+            myShopItems.clear();
+        notifyDataSetChanged();
+    }
+
+    public void setShopList(ArrayList<Shop_items> shopList){
+
+        Log.d("SetShopList", "Made it to function");
+        Log.d("SetShopList", "Data being recivied is");
+        for(int i = 0; i < shopList.size(); i++){
+            Shop_items shop = shopList.get(i);
+            Log.d("Data recivied", "setShopList" + shop.getTitle() + shop.getDesc() );
+        }
+
+       //if the list is not empty clear it, else reinitalize it with the data passed in
+        if(!(myShopItems == null)){
+            myShopItems.clear();
+        }
+
+        myShopItems = shopList;
+        notifyDataSetChanged();
+
+    }
 
 
     //public ShoplistAdapter() {myShopItems = new ArrayList<>();}
