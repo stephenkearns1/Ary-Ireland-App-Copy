@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+    /* Varaibles */
+
     FragmentPagerAdapter FragmentPagerAdapter;
     DrawerLayout mDrawerLayot;
     DetailsUserStoreLocal userLocaldetails;
@@ -86,18 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-        //sets up ViewPage adapter
-
-        //  ViewPager myViewPag = (ViewPager) findViewById(R.id.pager);
-        // FragmentPagerAdapter = new TabPageAdapter(getSupportFragmentManager());
-        //  myViewPag.setAdapter(FragmentPagerAdapter);
-
-        //pass the tab to the page view
-        // TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        // tabLayout.setupWithViewPager(myViewPag);
-
-
-        // Sets up the navigation drawer and adds an on Navigation drawer
+        // Sets up the navigation drawer and adds an event listener so when the drawer toggle
         mDrawerLayot = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayot, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
