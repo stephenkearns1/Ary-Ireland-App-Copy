@@ -1,0 +1,8 @@
+# Files that seem to update on "build" alone.
+# Attempting to ignore them with file
+
+.gradle/
+.idea/
+app/app.iml
+build/generated/
+local.properties
