@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Map" />
+            android:title="@string/drawer_item_map" /> /* used to be Map until it was moved to the strings file */
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -13,24 +13,24 @@
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Newsfeed" />
+            android:title="@string/drawer_item_newsfeed" /> /* used to be Newsfeed until it was moved to the strings file */
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Logout"
+            android:title="@string/drawer_item_logout"/> /* used to be Logout until it was moved to the strings file */
             />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/drawer_item_communicate"> /* used to be Communicate until it was moved to the strings file */
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/drawer_item_share" />  /* used to be Share until it was moved to the strings file */
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/drawer_item_send" /> /* used to be Send until it was moved to the strings file */
         </menu>
     </item>
 
