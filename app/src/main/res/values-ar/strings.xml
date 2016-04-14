@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Navigation Drawer-->
+    <string name="app_name">Ary-app</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_maps_activity_page">Map</string>
+
+    <!-- String Value for user details activity -->
+    <string name="user_name_lbl">Name:</string>
+    <string name="username_lbl">User Name:</string>
+    <string name="user_email_lbl">Email:</string>
+    <string name="user_password_lbl">Password:</string>
+
+    <!-- String for navagation drawer -->
+
+    <!--Map-->
+    <string name="drawer_item_map">خريطة</string>
+    <!--Profile-->
+    <string name="drawer_item_profile">الملف الشخصي</string>
+    <!--Newsfeed-->
+    <string name="drawer_item_newsfeed">مصادر الأخبار</string>
+    <!--Logout-->
+    <string name="drawer_item_logout">خروج</string>
+    <!--Communicate-->
+    <string name="drawer_item_communicate">نقل</string>
+    <!--Share-->
+    <string name="drawer_item_share">شارك</string>
+    <!--Send-->
+    <string name="drawer_item_send">إرسال</string>
+
+
+
+    <!--String for Login Layout -->
+    <!--Username-->
+    <string name="login_item_username">اسم المستخدم</string>
+    <!--Password-->
+    <string name="login_item_password">كلمه السر</string>
+    <!--Login-->
+    <string name="login_item_login">تسجيل الدخول</string>
+    <!--Register-->
+    <string name="login_item_register">تسجيل</string>
+
+
+    <!--User Register Layout -->
+    <!--Name-->
+    <string name="register_item_name">اسم</string>
+    <!--Username-->
+    <string name="register_item_username">اسم المستخدم</string>
+    <!--Email-->
+    <string name="register_item_email">البريد الإلكتروني</string>
+    <!--Password-->
+    <string name="register_item_password">كلمه السر</string>
+    <!--Register-->
+    <string name="register_item_register">تسجيل</string>
+    <!--Login-->
+    <string name="register_item_login">تسجيل الدخول</string>
+
+    <!--activity_account_settings--> <!--DONE-->
+    <string name="activity_account_settings_translate">ترجم</string>
+</resources>

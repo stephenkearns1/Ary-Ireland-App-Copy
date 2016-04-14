@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"/>
+        android:text="@string/login_item_username"/> <!-- used to be Username until it was moved to the strings file -->
 
     <EditText
         android:id="@+id/userName"
@@ -18,7 +18,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"/>
+        android:text="@string/login_item_password"/> <!-- used to be Password until it was moved to the strings file -->
 
     <EditText
         android:id="@+id/userPassword"
@@ -30,13 +30,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/loginBtn"
-        android:text="Login"
-        />
+        android:text="@string/login_item_login"
+        /> <!-- used to be Login until it was moved to the strings file -->
 
     <TextView
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/login_item_register"
         android:id="@+id/tvRegister"/>
-</LinearLayout>
+</LinearLayout>  <!-- used to be Register until it was moved to the strings file -->
