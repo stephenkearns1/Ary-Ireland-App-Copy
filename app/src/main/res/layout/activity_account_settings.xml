@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/logoutBtn"
-                    android:text="Logout"
+                    android:text="@string/user_logout_lbl"
                     android:layout_below="@+id/passwordHolder"
                     android:layout_toRightOf="@+id/passwordHolder"
                     android:layout_toEndOf="@+id/passwordHolder"

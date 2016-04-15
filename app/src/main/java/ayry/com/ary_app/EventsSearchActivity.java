@@ -80,7 +80,7 @@ public class EventsSearchActivity extends AppCompatActivity implements Navigatio
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_map) {
             // calls  the map activity, reason for using seperate activity is due to maps do not work with sliding activities
             Intent intent = new Intent(this, MapsActivityPage.class);
             startActivity(intent);
