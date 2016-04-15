@@ -23,7 +23,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -31,7 +30,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import ayry.com.ary_app.AppController;
 
 //imports for microsoft api
 import com.memetix.mst.language.Language;
@@ -43,21 +41,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /* Varaibles */
 
-    FragmentPagerAdapter FragmentPagerAdapter;
-    DrawerLayout mDrawerLayot;
-    DetailsUserStoreLocal userLocaldetails;
-    TextView displayUsernameTV;
-    TextView displayUseremailTV;
+    private  FragmentPagerAdapter FragmentPagerAdapter;
+    private DrawerLayout mDrawerLayot;
+    private DetailsUserStoreLocal userLocaldetails;
+    private TextView displayUsernameTV;
+    private TextView displayUseremailTV;
     private ObjectRequestHolder objWrapper;
-    Button mTranlateBtn;
-    RecyclerView rvShops;
-    ShoplistAdapter adapter;
-    TextView userEmail;
-    TextView userName;
-    SwipeRefreshLayout mSwipeRefreshLayout;
-    ArrayList<Shop_items> listOfShops;
-    ArrayList<Shop_items> tempShopList;
-    ArrayList<Shop_items> listOfShopsArabic;
+    private Button mTranlateBtn;
+    private RecyclerView rvShops;
+    private ShoplistAdapter adapter;
+    private TextView userEmail;
+    private TextView userName;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ArrayList<Shop_items> listOfShops;
+    private ArrayList<Shop_items> tempShopList;
+    private ArrayList<Shop_items> listOfShopsArabic;
+    private ArrayList<Shop_items> tempShopListArabic;
+    private boolean arabicTransBtnClick;
 
 
 
@@ -125,14 +125,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         rvShops.setAdapter(adapter);
 
         // Event listen which listens for refresh event when one happens the UpdateList method will be called,
-        // This will update the data with the new data retrived form the server
+        // This will update the data with the new data retrieved form the server
         // sets the colors used in the refresh animation
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_dark,
-                android.R.color.holo_blue_dark,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_orange_dark
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_purple
         );;
 
         //retrieves the data from the database, and populates the recylerView with the data received from the async task
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listOfShops = new ArrayList<>();
         tempShopList = new ArrayList<>();
         listOfShopsArabic = new ArrayList<>();
+        tempShopListArabic = new ArrayList<>();
 
 
     }
@@ -311,32 +312,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    /*
+      * could take the data retrieved from the retriveShopList method and async  and then update the recylerView from there or from the update class by keeping track if a button has been pressed or not and conditions
+     */
+
     @Override
     public void onClick(View v) {
 
+       arabicTransBtnClick = true;
+       convertToArabic();
 
-       newShopList();
 
 
     }
 
 
-    public void updateList(){
-        if(!(listOfShops==null)){
-            adapter.clear();
-            tempShopList.clear();
+    public void updateShopListEnglish(){
+        if(arabicTransBtnClick == false) {
+            if (!(listOfShops == null)) {
+                adapter.clear();
+                tempShopList.clear();
 
-            for(int i = 0; i < listOfShops.size(); i++){
-                tempShopList.add(listOfShops.get(i));
-                Shop_items shop = tempShopList.get(i);
-                Log.d("Data tempLst", "data in temp list after update called");
-                Log.d("data", shop.getTitle() + " " +  shop.getDesc());
+                for (int i = 0; i < listOfShops.size(); i++) {
+                    tempShopList.add(listOfShops.get(i));
+                    Shop_items shop = tempShopList.get(i);
+                    Log.d("Data tempLst", "data in temp list after update called");
+                    Log.d("data", shop.getTitle() + " " + shop.getDesc());
+                }
+
+                adapter.addAll(tempShopList);
             }
+        }
 
-            adapter.addAll(tempShopList);
+        if(arabicTransBtnClick == true){
+            if (!(listOfShopsArabic == null)) {
+                adapter.clear();
+                tempShopListArabic.clear();
+
+                for (int i = 0; i < listOfShopsArabic.size(); i++) {
+                    tempShopListArabic.add(listOfShopsArabic.get(i));
+                    Shop_items shop = tempShopListArabic.get(i);
+                    Log.d("Data tempLst", "data in temp list after update called");
+                    Log.d("data", shop.getTitle() + " " + shop.getDesc());
+                }
+
+                adapter.addAll(tempShopListArabic);
+            }
         }
 
     }
+
 
     /* the microsoft translator api */
 
@@ -344,15 +369,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         new MyAsyncTask() {
             protected void onPostExecute(Boolean result) {
-                for(int i = 0; i < listOfShopsArabic.size(); i++){
-                    //testing translation
-                    Shop_items shop = listOfShopsArabic.get(i);
-                    Log.i("Translate Arabic","The translated data is:");
-                    Log.d("data Arabic", shop.getTitle());
-                    Log.d("data Arabic", shop.getDesc());
 
+
+                if (!(listOfShopsArabic == null)) {
+                    adapter.clear();
+                    tempShopListArabic.clear();
+
+                    for (int i = 0; i < listOfShopsArabic.size(); i++) {
+                        tempShopListArabic.add(listOfShopsArabic.get(i));
+                        Shop_items shop = tempShopListArabic.get(i);
+                        Log.d("Data tempLst", "data in temp list after update called");
+                        Log.d("data", shop.getTitle() + " " + shop.getDesc());
+                    }
+
+                    adapter.addAll(tempShopListArabic);
                 }
             }
+
         }.execute();
 
 
@@ -378,13 +411,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } catch (Exception e) {
                 Log.d("Error translating",e.toString());
             }
+
             return true;
         }
     }
 
-    public void newShopList() {
+    /*
+       * The method starts a Volley JsonArrayRequest, which is used for making network request by use of requestQueues
+       * Volley also handle the request on separate worker threads and returns the parsed data back to the main thread
+       * The data is recivied form the server as a jsonArray and then parsed, then used to create a shop-list item and added to a array list of shops,
+       * which is then passed to the update function to update the recylerView with the recivied data
+     */
+    public void retrieveShopList() {
 
-        //start the volley jsonRequest
+
         mSwipeRefreshLayout.setRefreshing(true);
         String url = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/App-scripts/PullShopData.php";
         JsonArrayRequest request = new JsonArrayRequest(url,
@@ -402,6 +442,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             tempShopList.clear();
                         }
 
+                        if(!(listOfShopsArabic == null)){
+                            listOfShopsArabic.clear();
+                        }
+
+                        if(!(tempShopListArabic == null)){
+                            tempShopListArabic.clear();
+                        }
+
+
                         try {
 
                             for (int i = 0; i < response.length(); i++) {
@@ -412,7 +461,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String shopdesc = shopObj.getString(tagDesc);
                                 String shopgeo = shopObj.getString(tagGeo);
 
-                                Log.i("shopid", "id" + id);
+                                Log.i("shopid", "id" + id);//
                                 Log.i("shopname", shopname);
                                 Log.i("shopdesc", shopdesc);
                                 Log.i("shopgeo", shopgeo);
@@ -421,8 +470,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 listOfShops.add(shop);
 
                             }
-                               updateList();
-                               convertToArabic();
+
+                              // convertToArabic();
+                               updateShopListEnglish();
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.i("JSONError", e.toString());
@@ -444,7 +496,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        newShopList();
+        retrieveShopList();
     }
 
 
@@ -453,10 +505,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onDestroy();
     }
 
+
+    /*
+      Will have to keep track of which event it was called on i.e. of which click has been performed,
+     */
     @Override
     public void onRefresh() {
         Toast.makeText(MainActivity.this, "Swipe refresh working", Toast.LENGTH_SHORT).show();
-        newShopList();
+        retrieveShopList();
     }
 }//end of class
 
