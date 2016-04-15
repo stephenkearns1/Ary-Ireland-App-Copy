@@ -40,6 +40,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+
+
+    /*
+      * This has finally work allahu akbar
+
+     */
+
+
+
+
     /* Varaibles */
 
     private  FragmentPagerAdapter FragmentPagerAdapter;
