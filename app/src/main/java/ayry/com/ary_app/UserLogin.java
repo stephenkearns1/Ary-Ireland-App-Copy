@@ -14,7 +14,7 @@ import android.widget.TextView;
  * Created by Stephen Kearns on 09/03/2016.
  */
 public class UserLogin extends AppCompatActivity implements View.OnClickListener {
-
+//how is it going
     Button LoginBtn;
     EditText userNameET, userPasswordET;
     DetailsUserStoreLocal DetailsUserStoreLocal;
