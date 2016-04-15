@@ -1,5 +1,9 @@
 *.iml
 .gradle/
+/.gradle/2.8/taskArtifacts/cache.properties.lock
+/.gradle/2.8/taskArtifacts/fileHashes.bin
+/.gradle/2.8/taskArtifacts/fileSnapshots.bin
+/.gradle/2.8/taskArtifacts/taskArtifacts.bin
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
@@ -15,3 +19,4 @@
 /.idea/modules.xml
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
+/.idea/workspace.xml

@@ -1,5 +1,6 @@
 package ayry.com.ary_app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Shop_items> listOfShopsArabic;
     private ArrayList<Shop_items> tempShopListArabic;
     private boolean arabicTransBtnClick;
-
+    ProgressDialog progressDialog;
 
 
 
@@ -147,18 +148,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
       //  mTranlateBtn.performClick();
 
-
-        // displayUsernameTV = (TextView) findViewById(R.id.usernameTV);
-        //  displayUseremailTV = (TextView) findViewById(R.id.emailTV);
-
-        //  displayUseremailTV.setText("working in oncreate");
-        // onStart();
-
-
+        /* declares the arraylist ot hold the reived text and also the translated */
         listOfShops = new ArrayList<>();
         tempShopList = new ArrayList<>();
         listOfShopsArabic = new ArrayList<>();
         tempShopListArabic = new ArrayList<>();
+
+
+        /* Instantiates the progress dialog so it can be shown on the translate request to */
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Translating");
+        progressDialog.setMessage("Please wait....");
 
 
     }
@@ -320,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View v) {
 
        arabicTransBtnClick = true;
+       progressDialog.show();
+       retrieveShopList();
        convertToArabic();
 
 
@@ -344,21 +347,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        if(arabicTransBtnClick == true){
-            if (!(listOfShopsArabic == null)) {
-                adapter.clear();
-                tempShopListArabic.clear();
 
-                for (int i = 0; i < listOfShopsArabic.size(); i++) {
-                    tempShopListArabic.add(listOfShopsArabic.get(i));
-                    Shop_items shop = tempShopListArabic.get(i);
-                    Log.d("Data tempLst", "data in temp list after update called");
-                    Log.d("data", shop.getTitle() + " " + shop.getDesc());
-                }
-
-                adapter.addAll(tempShopListArabic);
-            }
-        }
 
     }
 
@@ -370,6 +359,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         new MyAsyncTask() {
             protected void onPostExecute(Boolean result) {
 
+                progressDialog.hide();
 
                 if (!(listOfShopsArabic == null)) {
                     adapter.clear();
