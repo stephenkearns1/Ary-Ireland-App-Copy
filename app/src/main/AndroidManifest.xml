@@ -52,7 +52,7 @@
             android:label="@string/title_activity_maps_activity_page" />
         <activity
             android:name=".UserLogin"
-            android:label="userLogin" >
+            android:label="Ayr Ireland" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
