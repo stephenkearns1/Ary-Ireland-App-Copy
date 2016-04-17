@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:name="ayry.com.ary_app.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -54,8 +55,8 @@
             android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".UserLogin"
-            android:label="userLogin"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            android:label="Ayr Ireland" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -80,7 +81,7 @@
         <activity
             android:name=".NewsfeedActivity"
             android:configChanges="orientation|screenSize">
-        </activity>
+	</activity>
     </application>
 
 </manifest>
