@@ -30,7 +30,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
         eventsList = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        //recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);

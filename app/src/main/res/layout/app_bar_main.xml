@@ -28,8 +28,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!-- Where the content of the page is called
-    <include layout="@layout/content_main" /> -->
+    <!-- Where the content of the page is called -->
+    <include layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
