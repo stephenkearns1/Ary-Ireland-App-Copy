@@ -52,7 +52,8 @@
         <activity
             android:name=".MapsActivityPage"
             android:label="@string/title_activity_maps_activity_page"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".UserLogin"
             android:configChanges="orientation|screenSize"
@@ -66,7 +67,8 @@
         <activity
             android:name=".UserRegister"
             android:label="UserReg"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".AccountSettingsActivity"
             android:label="@string/title_activity_main2"
@@ -74,13 +76,16 @@
             android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".EventsSearchActivity"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".EventsSearchResultsActivity"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".NewsfeedActivity"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar">
 	</activity>
     </application>
 

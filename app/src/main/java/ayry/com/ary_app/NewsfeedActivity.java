@@ -25,12 +25,12 @@ public class NewsfeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        // setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarEvents);
+        //setSupportActionBar(toolbar);
 
         eventsList = new ArrayList<>();
 
-        //recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
@@ -38,8 +38,6 @@ public class NewsfeedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new NewsfeedRecylerViewAdapter(this);
-
-        //loadData();
 
         recyclerView.setAdapter(adapter);
 
@@ -63,7 +61,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     private void loadData(){
         adapter.clear();
-        EventsModel event = new EventsModel("Prayer Meeting ", "Somewhere", "41 adresss street yay ", "01 5985 2156", "8:30", 0);
+        EventsModel event = new EventsModel("Prayer Meeting", "Name of event", "location", "time", "date", 0);
         EventsModel event1 = new EventsModel("", "", "", "", "", 0);
         EventsModel event2 = new EventsModel("", "", "", "", "", 0);
         EventsModel event3 = new EventsModel("", "", "", "", "", 0);
