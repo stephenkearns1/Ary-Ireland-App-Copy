@@ -68,8 +68,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Tags for parsing json
     private static final String tagId = "id";
     private static final String tagName = "shopname";
-    private static final String tagDesc = "shopDesc";
-    private static final String tagGeo = "geo";
+    private static final String tagDesc = "shopdesc";
+    private static final String tagAddress = "shopaddress";
+    private static final String tagpNum = "shopnumber";
+    private static final String tagOpeningTime = "openingtime";
+    private static final String tagClosingTime = "closingtime";
+    private static final String tagLat = "lat";
+    private static final String tagLong = "longatt";
 
 
     @Override
@@ -431,8 +436,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Shop_items shopsAr = listOfShops.get(i);
                     String shopTitleAr = Translate.execute(shopsAr.getTitle(), Language.ENGLISH, Language.ARABIC);
                     String shopDescAr = Translate.execute(shopsAr.getTitle(), Language.ENGLISH, Language.ARABIC);
+                    String shopAddresAr = Translate.execute(shopsAr.getAddress(), Language.ENGLISH, Language.ARABIC);
 
-                    Shop_items newShopArabic = new Shop_items(shopsAr.id, "", shopTitleAr, shopDescAr);
+
+                    Shop_items newShopArabic = new Shop_items(shopsAr.getId(), "", shopTitleAr, shopDescAr,shopAddresAr, shopsAr.getpNumber(), shopsAr.getOpeningtime(), shopsAr.getCloisngtime(),shopsAr.getLat(), shopsAr.getLongatt());
                     listOfShopsArabic.add(newShopArabic);
                 }
 
@@ -487,14 +494,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 int id = Integer.parseInt(shopObj.getString(tagId));
                                 String shopname = shopObj.getString(tagName);
                                 String shopdesc = shopObj.getString(tagDesc);
-                                String shopgeo = shopObj.getString(tagGeo);
+                                String shopAddress = shopObj.getString(tagAddress);
+                                int shopNum = Integer.parseInt(shopObj.getString(tagpNum));
+                                String shopOpenTime = shopObj.getString(tagOpeningTime);
+                                String shopClosingTime = shopObj.getString(tagClosingTime);
+                                Double lat = Double.parseDouble(shopObj.getString(tagLat));
+                                Double longatt = Double.parseDouble(shopObj.getString(tagLong));
+
 
                                 Log.i("shopid", "id" + id);//
                                 Log.i("shopname", shopname);
                                 Log.i("shopdesc", shopdesc);
-                                Log.i("shopgeo", shopgeo);
+                                Log.i("shopgeo","");
 
-                                Shop_items shop = new Shop_items(id, "", shopname, shopdesc);
+                                Shop_items shop = new Shop_items(id, "", shopname, shopdesc,shopAddress,shopNum,shopOpenTime,shopClosingTime,lat,longatt);
                                 listOfShops.add(shop);
 
                             }

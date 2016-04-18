@@ -7,34 +7,34 @@ import java.util.ArrayList;
  */
 public class Shop_items{
     //This would contain the path to the local shop image
-     public String img;
-     public String title;
-     public String desc;
-     public int id;
+    private int id;
+    private String img;
+    private String title;
+    private String desc;
+    private String address;
+    private int pNumber;
+    private String openingtime;
+    private String cloisngtime;
+    private Double lat;
+    private Double longatt;
+
      public String geoLocation;
 
-    public Shop_items(int id, String img, String title, String desc){
+    public Shop_items(int id, String img, String title, String desc, String address, int pNumber, String openingtime, String cloisngtime, Double lat, Double longatt){
         this.id = id;
         this.img = img;
         this.title = title;
         this.desc = desc;
+        this.address = address;
+        this.pNumber = pNumber;
+        this.openingtime = openingtime;
+        this.cloisngtime = cloisngtime;
+        this.lat = lat;
+        this.longatt = longatt;
     }
 
-   /* public static ArrayList<Shop_items> getShopItems(){
-        ArrayList<Shop_items> shops = new ArrayList<>();
 
-        //populate the arraylist with shops
-        shops.add(new Shop_items("R.drawable.android","Asian Food","We understand your taste and needs and so we maintain a great collection of quality exotic food and a variety of Asian food ingredients."));
-        shops.add(new Shop_items("R.drawable.android"," Mediterranean Food Market","Stuffed with Asian, Turkish and European groceries, the Mediterranean Food Market on Thomas Street is a good shop to pick up fresh meat of halal standards as well as poultry"));
-        shops.add(new Shop_items("R.drawable.android","Asian Food","We understand your taste and needs and so we maintain a great collection of quality exotic food and a variety of Asian food ingredients."));
-        shops.add(new Shop_items("R.drawable.android"," Mediterranean Food Market","Stuffed with Asian, Turkish and European groceries, the Mediterranean Food Market on Thomas Street is a good shop to pick up fresh meat of halal standards as well as poultry"));
-        shops.add(new Shop_items("R.drawable.android","Asian Food","We understand your taste and needs and so we maintain a great collection of quality exotic food and a variety of Asian food ingredients."));
-        shops.add(new Shop_items("R.drawable.android"," Mediterranean Food Market","Stuffed with Asian, Turkish and European groceries, the Mediterranean Food Market on Thomas Street is a good shop to pick up fresh meat of halal standards as well as poultry"));
-        shops.add(new Shop_items("R.drawable.android","Asian Food","We understand your taste and needs and so we maintain a great collection of quality exotic food and a variety of Asian food ingredients."));
-        shops.add(new Shop_items("R.drawable.android"," Mediterranean Food Market","Stuffed with Asian, Turkish and European groceries, the Mediterranean Food Market on Thomas Street is a good shop to pick up fresh meat of halal standards as well as poultry"));
 
-        return shops;
-    } */
 
 
     public String getTitle(){
@@ -48,4 +48,37 @@ public class Shop_items{
     public String getImg(){
         return img;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getpNumber() {
+        return pNumber;
+    }
+
+
+    public String getOpeningtime() {
+        return openingtime;
+    }
+
+    public String getCloisngtime() {
+        return cloisngtime;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLongatt() {
+        return longatt;
+    }
+
+
+
+
 }

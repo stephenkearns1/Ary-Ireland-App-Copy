@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ayry.com.ary_app" >
+    package="ayry.com.ary_app">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -11,8 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
-        android:name="ayry.com.ary_app.AppController"
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Ayry-App"
@@ -21,8 +20,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
 
             <!--
             <intent-filter>
@@ -35,8 +33,7 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -51,42 +48,36 @@
 
         <activity
             android:name=".MapsActivityPage"
-            android:label="@string/title_activity_maps_activity_page"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_maps_activity_page" />
         <activity
             android:name=".UserLogin"
-            android:configChanges="orientation|screenSize"
-            android:label="Ayr Ireland" >
+            android:label="Ayr Ireland">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".UserRegister"
+            android:label="UserReg" />
+        <activity
+            android:name=".AccountSettingsActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EventsSearchActivity" />
+        <activity android:name=".EventsSearchResultsActivity" />
+        <activity android:name=".NewsfeedActivity"></activity>
+        <activity android:name=".Splash"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".UserRegister"
-            android:label="UserReg"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".AccountSettingsActivity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize"/>
-        <activity
-            android:name=".EventsSearchActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".EventsSearchResultsActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".NewsfeedActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar">
-	</activity>
     </application>
 
 </manifest>
