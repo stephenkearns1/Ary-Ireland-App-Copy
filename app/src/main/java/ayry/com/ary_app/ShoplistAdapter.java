@@ -32,7 +32,11 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView shopImage;
         public TextView shopTitle;
+        public TextView shopAddress;
+        public TextView shopNum;
+        public TextView shopTime;
         public TextView shopDesc;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -40,6 +44,9 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
             shopImage = (ImageView) itemView.findViewById(R.id.shop_img);
             shopTitle = (TextView) itemView.findViewById(R.id.shop_title);
             shopDesc = (TextView) itemView.findViewById(R.id.shop_description);
+            shopAddress  = (TextView) itemView.findViewById(R.id.shop_address);
+            shopNum = (TextView) itemView.findViewById(R.id.shop_pnumber);
+            shopTime = (TextView) itemView.findViewById(R.id.shop_time);
 
         }
 
@@ -153,11 +160,18 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
         ImageView shopImg = viewHolder.shopImage;
         TextView shopTitleTV = viewHolder.shopTitle;
         TextView shopDescTV = viewHolder.shopDesc;
+        TextView shopAddressTV = viewHolder.shopAddress;
+        TextView shopNumTV = viewHolder.shopNum;
+        TextView shopTimeTV = viewHolder.shopTime;
 
         //set the views with the data
         shopImg.setImageResource(R.drawable.android);
         shopTitleTV.setText(shop.getTitle());
         shopDescTV.setText(shop.getDesc());
+        shopAddressTV.setText(shop.getAddress());
+        shopNumTV.setText(String.valueOf(shop.getpNumber()));
+        shopTimeTV.setText(shop.getOpeningtime() + " - " + shop.getCloisngtime());
+
     }
 
     @Override

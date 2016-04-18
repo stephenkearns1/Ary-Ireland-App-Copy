@@ -15,12 +15,12 @@ public class Shop_items{
     private int pNumber;
     private String openingtime;
     private String cloisngtime;
-    private int lat;
-    private int longatt;
+    private Double lat;
+    private Double longatt;
 
      public String geoLocation;
 
-    public Shop_items(int id, String img, String title, String desc, String address, int pNumber, String openingtime, String cloisngtime, int lat, int longatt){
+    public Shop_items(int id, String img, String title, String desc, String address, int pNumber, String openingtime, String cloisngtime, Double lat, Double longatt){
         this.id = id;
         this.img = img;
         this.title = title;
@@ -70,11 +70,11 @@ public class Shop_items{
         return cloisngtime;
     }
 
-    public int getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public int getLongatt() {
+    public Double getLongatt() {
         return longatt;
     }
 
