@@ -11,7 +11,7 @@ public class EventsModel {
     private String date;
     private Double lat;
     private Double longattl;
-    private String locatiion;
+    private String location;
 
     private int image;
 
@@ -21,9 +21,15 @@ public class EventsModel {
         this.catagory = catagory;
         this.time = time;
         this.date = date;
-        this.locatiion = location;
+        this.location = location;
         this.lat = lat;
         this.longattl = longattl;
+    }
+
+    public EventsModel(String catagory, String date, String location){
+        this.catagory = catagory;
+        this.date = date;
+        this.location = location;
     }
 
     public String getTitle() {
@@ -44,7 +50,7 @@ public class EventsModel {
     }
 
     public String getLocatiion() {
-        return locatiion;
+        return location;
     }
 
     public String getDate() {

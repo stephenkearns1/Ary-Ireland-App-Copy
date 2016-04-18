@@ -9,10 +9,14 @@ public class ObjectRequestHolder {
 
     static User userApp;
     static Shop_items shop;
+    static EventsModel event;
 
     static ArrayList<Shop_items> shopList;
+    private ArrayList<EventsModel> eventList;
     public ObjectRequestHolder(){
         shopList = new ArrayList<>();
+        eventList = new ArrayList<>();
+
 
     }
 
@@ -29,10 +33,20 @@ public class ObjectRequestHolder {
          shopList.add(shop);
     }
 
+    public void addEvent(EventsModel event){
+        eventList.add(event);
+    }
+
+    public ArrayList<EventsModel> getEventList(){
+        return eventList;
+    }
     public ArrayList<Shop_items> getShopList(){
         return shopList;
     }
 
+    public EventsModel getEvent() {
+        return event;
+    }
 
     public User getUserApp() {
         return userApp;
