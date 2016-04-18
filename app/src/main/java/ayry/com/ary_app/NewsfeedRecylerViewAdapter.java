@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,19 +39,23 @@ public class NewsfeedRecylerViewAdapter extends RecyclerView.Adapter< NewsfeedRe
     }
 
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view  = LayoutInflater.from(context).inflate(R.layout.events_card_view_item, parent, false);
         return new ViewHolder(view);
     }
 
+
+
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         final  EventsModel events = eventsModelList.get(position);
         holder.itemHolder.title.setText(events.getTitle());
-        holder.itemHolder.place.setText(events.getPlace());
-        holder.itemHolder.phone.setText(events.getPhone());
-        holder.itemHolder.address.setText(events.getAddress());
+        holder.itemHolder.catagory.setText(events.getCatagory());
+        holder.itemHolder.date.setText(events.getDate());
+        holder.itemHolder.address.setText(events.getLocatiion());
         holder.itemHolder.time.setText(events.getTime());
 
 
@@ -61,9 +66,9 @@ public class NewsfeedRecylerViewAdapter extends RecyclerView.Adapter< NewsfeedRe
     public void onBindViewHolder(ViewHolder holder, int position) {
         final  EventsModel events = eventsModelList.get(position);
         holder.itemHolder.title.setText(events.getTitle());
-        holder.itemHolder.place.setText(events.getPlace());
-        holder.itemHolder.phone.setText(events.getPhone());
-        holder.itemHolder.address.setText(events.getAddress());
+        holder.itemHolder.catagory.setText(events.getCatagory());
+        holder.itemHolder.date.setText(events.getDate());
+        holder.itemHolder.address.setText(events.getLocatiion());
         holder.itemHolder.time.setText(events.getTime());
 
         //holder.itemHolder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.monument));
@@ -81,10 +86,10 @@ public class NewsfeedRecylerViewAdapter extends RecyclerView.Adapter< NewsfeedRe
 
             itemHolder = new ItemHolder();
             itemHolder.title = (TextView) itemView.findViewById(R.id.titleTv);
-            itemHolder.place = (TextView) itemView.findViewById(R.id.placeTv);
+            itemHolder.catagory = (TextView) itemView.findViewById(R.id.catagoryTv);
             itemHolder.address = (TextView) itemView.findViewById(R.id.addressTv);
-            itemHolder.phone = (TextView) itemView.findViewById(R.id.phoneTv);
-            itemHolder.time = (TextView) itemView.findViewById(R.id.timeTv);
+            itemHolder.date = (TextView) itemView.findViewById(R.id.event_dateTv);
+            itemHolder.time = (TextView) itemView.findViewById(R.id.event_timeTv);
             itemHolder.image = (ImageButton) itemView.findViewById(R.id.imageButton);
             itemHolder.holder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
 
@@ -108,10 +113,12 @@ public class NewsfeedRecylerViewAdapter extends RecyclerView.Adapter< NewsfeedRe
     }
 
     public static class ItemHolder{
-        TextView title, place, address, phone, time;
+        TextView title, catagory, address, date, time;
         ImageButton image;
         LinearLayout holder;
     }
+
+
 }
 
 

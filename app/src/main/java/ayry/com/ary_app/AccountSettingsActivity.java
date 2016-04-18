@@ -123,7 +123,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements  Navig
     public void onClick(View v) {
         userDetails.clearUserData();
         User user = userDetails.UserLoggedIn();
-        Log.i("User details clear", user.getEmail());
+        Log.i("User details clear","Email is" + user.getEmail());
         Intent intent = new Intent(this, UserLogin.class);
         startActivity(intent);
     }

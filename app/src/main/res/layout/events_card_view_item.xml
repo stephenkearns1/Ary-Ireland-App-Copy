@@ -37,15 +37,13 @@
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prayer Meeting"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/placeTv"
+            android:id="@+id/catagoryTv"
             android:layout_width="359dp"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
-            android:text="Prayer Meeting in Clonskeagh Mosque"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -53,23 +51,20 @@
             android:layout_width="wrap_content"
             android:layout_height="137dp"
             android:layout_gravity="bottom"
-            android:text="Address: 19 Roebuck Road, Clonskeagh, Dublin 14"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/phoneTv"
+            android:id="@+id/event_timeTv"
             android:layout_width="wrap_content"
             android:layout_height="58dp"
             android:layout_gravity="bottom"
-            android:text="Date : 30/01/2016"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/timeTv"
+            android:id="@+id/event_dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Time: 8:30"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </android.support.v7.widget.CardView>

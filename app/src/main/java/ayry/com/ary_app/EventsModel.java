@@ -4,21 +4,25 @@ package ayry.com.ary_app;
  * Created by stephen on 12/04/2016.
  */
 public class EventsModel {
+    private int id;
     private String title;
-    private String place;
-    private String address;
-    private String phone;
+    private String catagory;
     private String time;
+    private String date;
+    private Double lat;
+    private Double longattl;
+    private String locatiion;
 
     private int image;
 
-    public EventsModel(String title, String place, String address, String phone, String time, int image) {
+    public EventsModel(int id, String catagory, String title,String location, String time, String date, Double lat, Double longattl) {
         this.title = title;
-        this.place = place;
-        this.address = address;
-        this.phone = phone;
+        this.catagory = catagory;
         this.time = time;
-        this.image = image;
+        this.date = date;
+        this.locatiion = location;
+        this.lat = lat;
+        this.longattl = longattl;
     }
 
     public String getTitle() {
@@ -29,28 +33,36 @@ public class EventsModel {
         this.title = title;
     }
 
-    public String getPlace() {
-        return place;
+
+    public String getCatagory() {
+        return catagory;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public int getId() {
+        return id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLocatiion() {
+        return locatiion;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getDate() {
+        return date;
     }
 
-    public String getPhone() {
-        return phone;
+
+    public Double getLat() {
+        return lat;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+
+    public Double getLongattl() {
+        return longattl;
+    }
+
+
+    public int getImage() {
+        return image;
     }
 
     public String getTime() {
