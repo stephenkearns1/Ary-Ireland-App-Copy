@@ -48,6 +48,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
     private boolean arabicTransBtnClick;
     private boolean englishTransBtnClick;
     ProgressDialog progressDialog;
+    ProgressDialog rerefreshDialog;
 
     /* used for parsing json */
     //Tags for parsing json
@@ -122,6 +123,12 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Translating");
         progressDialog.setMessage("Please wait....");
+
+
+        rerefreshDialog = new ProgressDialog(this);
+        rerefreshDialog .setCancelable(false);
+        rerefreshDialog .setTitle("Refreshing");
+        rerefreshDialog .setMessage("Please wait....");
     }
 
 
@@ -139,7 +146,11 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
                 }
 
                 adapter.addAll(tempEventList);
+                progressDialog.hide();
+                rerefreshDialog.hide();
             }
+
+
        }
 
 
@@ -165,9 +176,10 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
         if(id == R.id.action_refresh) {
             //check which button has been click i.e. to refresh data in arabic or in english dependent on which is pressed
             if(englishTransBtnClick == true){
+                rerefreshDialog.show();
                 retrieveShopList();
             }else if(arabicTransBtnClick == true){
-                progressDialog.show();
+                rerefreshDialog.show();
                 retrieveShopList();
                 convertToArabic();
             }else{
@@ -177,6 +189,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
         }else if(id == R.id.action_english){
             englishTransBtnClick = true;
             arabicTransBtnClick = false;
+            progressDialog.show();
             retrieveShopList();
         }else if(id == R.id.action_arabic){
             arabicTransBtnClick = true;
@@ -279,6 +292,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
             protected void onPostExecute(Boolean result) {
 
                 progressDialog.hide();
+                rerefreshDialog.hide();
 
                 if (!(listOfEventsArabic == null)) {
                     adapter.clear();
