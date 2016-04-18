@@ -402,6 +402,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_map) {
@@ -409,6 +410,8 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
             Intent intent = new Intent(this, MapsActivityPage.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
             //this is were a intent will be started for the newsfeed activity
@@ -422,10 +425,12 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(this, EventsSearchActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
 
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

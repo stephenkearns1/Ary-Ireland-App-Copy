@@ -50,7 +50,7 @@ public class ShopsList_Fragment extends Fragment implements  View.OnClickListene
 
          objWrapper = new ObjectRequestHolder();
         //retrive the data from the database
-        getData();
+
 
 
 
@@ -121,36 +121,7 @@ public class ShopsList_Fragment extends Fragment implements  View.OnClickListene
     }
 
 
-    public void getData(){
 
-        DB_Sever_Request dbRequest = new DB_Sever_Request(getActivity());
-        dbRequest.PullShopData(new GetUserCallBack() {
-            @Override
-            public void finished(ObjectRequestHolder obj) {
-                ArrayList<Shop_items> shops = obj.getShopList();
-                if(shops == null){
-                    Log.i("array retuend", "ShopsList reutrned is equal to null");
-                }
-
-                else if(shops.size() == 0){
-
-                }else{
-                    for(int i = 0; i < shops.size(); i++){
-                        Shop_items myshop = shops.get(i);
-                        Log.i("result",myshop.getTitle() + myshop.getDesc());
-
-                    }
-                    //sends a reference to the object return to be accessible
-                  dataSource(obj);
-
-                }
-
-            }
-
-        });
-
-
-    }
 
 
     public void dataSource(ObjectRequestHolder requestObj){

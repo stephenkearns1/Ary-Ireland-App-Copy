@@ -276,7 +276,10 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
                 @Override
                 public void finished(ObjectRequestHolder obj) {
                    eventsList = obj.getEventList();
-
+                   for(int i = 0; i < eventsList.size(); i++){
+                       EventsModel event = eventsList.get(i);
+                       Log.i("async data", event.getTitle() + event.getCatagory());
+                   }
                 }
             });
         }
