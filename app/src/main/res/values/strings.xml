@@ -16,7 +16,6 @@
     <string name="activity_main_translate">Translate</string>
 
 
-
     <!-- String Value for user details activity --> <!--Logout page-->
     <string name="user_name_lbl">Name:</string>
     <string name="username_lbl">User Name:</string>
