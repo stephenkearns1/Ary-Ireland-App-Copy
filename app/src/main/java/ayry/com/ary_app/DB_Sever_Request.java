@@ -35,17 +35,27 @@ public class DB_Sever_Request {
     public static final int Con_Timer = 1000*50;
     public static final String server_LoginUrl = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Login/login.php";
     public  static final String server_Registration = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Login/Register.php";
-    public static  final String server_PullShopData = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/App-scripts/PullShopData.php";
+    public static  final String server_PullShopData = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Pull-NewsFeed/SearchEvents.php";
     private String requestToMake;
     protected String urlToUse;
     public int i = 0;
     ObjectRequestHolder shopHolder = new ObjectRequestHolder();
 
     //Tags for parsing json
-    private static final String tagId = "id";
+
     private static final String tagName = "shopname";
     private static final String tagDesc = "shopDesc";
     private static final String tagGeo = "geo";
+
+    //Tags for parsing json
+    private static final String tagId = "id";
+    private static final String tagCatagory = "catagory";
+    private static final String tagtitle = "title";
+    private static final String tagLocation = "location";
+    private static final String tagpTime = "eventTime";
+    private static final String tagDate = "eventDate";
+    private static final String tagLat = "latitude";
+    private static final String tagLong = "longitude";
 
     // instaniates the progressDialog by getting the context of the activity which uses it,
     // as Progress dialogs need a class which extends the activity class
@@ -76,12 +86,12 @@ public class DB_Sever_Request {
 
     }
 
-    public void PullShopData(GetUserCallBack userCallBack){
+    public void SearchEvents(EventsModel event, GetUserCallBack userCallBack){
         progressDialog.show();
         //new instances of server request to pulling
 
-        requestToMake = "shopData";
-        new ServerRequestDataAsync(userCallBack).execute();
+        requestToMake = "search";
+        new ServerRequestDataAsync(event,userCallBack).execute();
     }
 
     public class ServerRequestDataAsync extends AsyncTask<Void,Void,ObjectRequestHolder>{
@@ -89,14 +99,15 @@ public class DB_Sever_Request {
         GetUserCallBack callBackUser;
         User user;
         Shop_items shop;
+        EventsModel event;
         public ServerRequestDataAsync(User user, GetUserCallBack callBackUser){
             this.callBackUser = callBackUser;
             this.user = user;
         }
 
-        public ServerRequestDataAsync( GetUserCallBack callBackUser){
+        public ServerRequestDataAsync(EventsModel event, GetUserCallBack callBackUser){
             this.callBackUser = callBackUser;
-            requesrObj = new ObjectRequestHolder();
+            this.event = event;
 
 
         }
@@ -121,10 +132,10 @@ public class DB_Sever_Request {
                     dbLoginCred.put("password", user.password);
                     urlToUse = server_Registration;
                     break;
-                case "shopData":
-                   /* dbLoginCred.put("shomImg", shop.img);
-                    dbLoginCred.put("shoptitle", shop.title);
-                    dbLoginCred.put("shopdesc", shop.desc); */
+                case "search":
+                    dbLoginCred.put("catagory", event.getCatagory());
+                    dbLoginCred.put("date", event.getDate());
+                    dbLoginCred.put("location", event.getLocatiion());
                    // dbLoginCred.put("countern",String.valueOf(i));
                     urlToUse = server_PullShopData;
 
@@ -200,7 +211,7 @@ public class DB_Sever_Request {
                         //Log.d("UserReturned",userReturned.name);
 
                     }
-                }/*else if(requestToMake .equals("shopData")){
+                }else if(requestToMake .equals("shopData")){
 
                     JSONArray jsonObj = new JSONArray(response);
 
@@ -208,20 +219,22 @@ public class DB_Sever_Request {
                 //    JSONObject shoplst = jsonObj.getJSONObject();
 
                     for(int i = 0; i < jsonObj.length(); i++){
-                        JSONObject shopObj = jsonObj.getJSONObject(i);
-                        int id = Integer.parseInt(shopObj.getString(tagId));
-                        String shopname = shopObj.getString(tagName);
-                        String shopdesc = shopObj.getString(tagDesc);
-                        String shopgeo = shopObj.getString(tagGeo);
-                        String address = shopObj.getString(tagName);
-                        int num = shopObj.getString(tagDesc);
-                        String shopgeo = shopObj.getString(tagGeo);
-                        Log.i("shopid", "id"+id);
-                        Log.i("shopname",shopname);
-                        Log.i("shopdesc", shopdesc);
-                        Log.i("shopgeo", shopgeo);
+                        JSONObject eventObj = jsonObj.getJSONObject(i);;
 
-                        Shop_items shop = new Shop_items(id,"",shopname,shopdesc);
+                        int id = Integer.parseInt(eventObj .getString(tagId));
+                        String eventCat = eventObj .getString(tagCatagory);
+                        String eventTitle = eventObj .getString(tagtitle);
+                        String eventLocation = eventObj.getString(tagLocation);
+                        String eventTime = eventObj.getString(tagpTime);
+                        String eventDate  = eventObj.getString(tagDate);
+                        Double eventLat = Double.parseDouble(eventObj.getString(tagLat));
+                        Double eventLong = Double.parseDouble(eventObj.getString(tagLong));
+                        Log.i("shopid", "id"+id);
+                        Log.i("shopname", eventCat);
+                        Log.i("shopdesc", eventTitle);
+                        Log.i("shopgeo", eventLocation);
+
+                        EventsModel newEvent = new EventsModel(id,eventCat,eventTitle,eventLocation,eventTime,eventDate, eventLat,eventLong);
                         requesrObj.addShop(shop);
 
 
@@ -229,30 +242,8 @@ public class DB_Sever_Request {
 
 
 
-                  /*  while(response.length() != 0) {
-                        JSONObject jsonResponse = new JSONObject(response);
 
-                       // int shopid = Integer.parseInt(jsonResponse.getString("shopgeo"))
-                        String shopname = jsonResponse.getString("shopname");
-                        String shopdesc = jsonResponse.getString("shopdesc");
-                        //int shopgeo  = Integer.parseInt(jsonResponse.getString("shopgeo"));
-                        String shopgeo = jsonResponse.getString("shopgeo");
-
-
-                        Shop_items shop = new Shop_items(shopname,shopdesc, shopdesc);
-                        shopHolder.setShop(shop);
-                        shopHolder.addShop(shop);
-                        //increment counter to pull next row of data from array
-                        i++;
-                        //calls the function on its self to retrive the data sent from php
-                        PullShopData(callBackUser);
-
-
-
-
-                    }
-
-                } */
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -262,7 +253,7 @@ public class DB_Sever_Request {
                 requesrObj = new ObjectRequestHolder();
                 requesrObj.setUserApp(userReturned);
                 return requesrObj;
-            }else if(requestToMake.equals("shopData")){
+            }else if(requestToMake.equals("search")){
                 return requesrObj;
             }else{
                 return null;
@@ -310,7 +301,7 @@ public class DB_Sever_Request {
                     callBackUser.finished(null);
                     super.onPostExecute(null);
                     break;
-                case "shopData":
+                case "search":
                     callBackUser.finished(requesrObj);
                     super.onPostExecute(requesrObj);
                     break;

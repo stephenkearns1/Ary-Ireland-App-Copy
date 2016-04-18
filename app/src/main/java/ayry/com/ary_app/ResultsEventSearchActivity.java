@@ -41,6 +41,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
     RecyclerView recyclerView;
     EventsSearchAdapter adapter;
+    ObjectRequestHolder objHolder;
 
     List<EventsModel> eventsList;
     DrawerLayout mDrawerLayot;
@@ -117,6 +118,10 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
         recyclerView.setAdapter(adapter);
 
+        ObjectRequestHolder objHolder = new ObjectRequestHolder();
+
+        EventsModel event = new EventsModel(catagory,date,location);
+
 
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -168,6 +173,8 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
     } */
     }
+
+
 
     public void updateShopListEnglish(){
         if(arabicTransBtnClick == false) {
@@ -243,7 +250,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     @Override
     protected void onResume(){
         super.onResume();
-        retrieveShopList();
+        searchEvents(objHolder);
     }
 
     private String postGetMethodUrl(){
@@ -261,80 +268,21 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     */
 
 
-    public void retrieveShopList(){
-
-        JsonArrayRequest request = new JsonArrayRequest(postGetMethodUrl(),
-                new Response.Listener<JSONArray>() {
 
 
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        //check the response from the server
-                        // Log.i("New Response", response.toString());
+        public void  searchEvents(ObjectRequestHolder requestObj){
+            DB_Sever_Request dbRequest = new DB_Sever_Request(this);
+            dbRequest.SearchEvents(requestObj.getEvent(), new GetUserCallBack() {
+                @Override
+                public void finished(ObjectRequestHolder obj) {
+                   eventsList = obj.getEventList();
 
-                        if (!(listOfEvents == null)) {
-                            listOfEvents.clear();
-                        }
-
-                        if(!(tempEventList == null)){
-                            tempEventList.clear();
-                        }
-
-                        if(!(listOfEventsArabic == null)){
-                            listOfEventsArabic.clear();
-                        }
-
-                        if(!(tempEventListArabic == null)){
-                            tempEventListArabic.clear();
-                        }
-
-
-                        try {
-
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject shopObj = (JSONObject) response.get(i);
-
-                                int id = Integer.parseInt(shopObj.getString(tagId));
-                                String eventCat = shopObj.getString(tagCatagory);
-                                String eventTitle = shopObj.getString(tagtitle);
-                                String eventLocation = shopObj.getString(tagLocation);
-                                String eventTime =shopObj.getString(tagpTime);
-                                String eventDate  = shopObj.getString(tagDate);
-                                Double eventLat = Double.parseDouble(shopObj.getString(tagLat));
-                                Double eventLong = Double.parseDouble(shopObj.getString(tagLong));
+                }
+            });
+        }
 
 
 
-
-
-                                EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
-                                listOfEvents.add(event);
-
-                            }
-
-                            // convertToArabic();
-                            updateShopListEnglish();
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.i("JSONError", e.toString());
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Log.d("Pulling ShopData", "Error" + error.getMessage());
-            }
-        });
-
-    //adding request to the request queue which is kept in a singleton as to make the request queue last for application lifecycle
-        AppController.getInstance().addToRequestQueue(request);
-
-
-
-    }
 
 
 
@@ -457,7 +405,6 @@ class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 
 
 */
-
 
 
     @Override
