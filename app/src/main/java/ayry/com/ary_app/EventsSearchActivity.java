@@ -85,9 +85,13 @@ public class EventsSearchActivity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, MapsActivityPage.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
-
+            //this is were a intent will be started for the newsfeed activity
+            Intent intent = new Intent(this, NewsfeedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
             // userLocaldetails.clearUserData();
             // User user = userLocaldetails.UserLoggedIn();
@@ -96,7 +100,8 @@ public class EventsSearchActivity extends AppCompatActivity implements Navigatio
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(this, EventsSearchActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
 
         }

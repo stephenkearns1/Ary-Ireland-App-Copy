@@ -55,4 +55,8 @@ public class ObjectRequestHolder {
     public Shop_items getShop() {
         return shop;
     }
+
+    public void setEvent(EventsModel event) {
+        this.event = event;
+    }
 }

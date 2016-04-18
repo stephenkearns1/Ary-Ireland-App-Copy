@@ -122,7 +122,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
         EventsModel event = new EventsModel(catagory,date,location);
 
-
+        objHolder.setEvent(event);
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -38,7 +38,7 @@ import com.memetix.mst.translate.Translate;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener {
 
     /* Varaibles */
 
@@ -144,15 +144,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //retrieves the data from the database, and populates the recylerView with the data received from the async task
 
 
-
-
-        //Set and click event on translator button to translate the text
-       // mTranlateBtn = (Button) findViewById(R.id.translationBtn);
-
-      //  mTranlateBtn.setOnClickListener(this);
-
-      //  mTranlateBtn.performClick();
-
         /* declares the arraylist ot hold the reived text and also the translated */
         listOfShops = new ArrayList<>();
         tempShopList = new ArrayList<>();
@@ -160,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tempShopListArabic = new ArrayList<>();
 
 
-        /* Instantiates the progress dialog so it can be shown on the translate request to */
+        /* Instantiates the progress dialog so it can be shown on the translate request and swipe action*/
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Translating");
@@ -237,15 +228,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return userLocaldetails.getLoggedIn();
     }
 
-
+ /*
+   Displays details of user logged in in the dawer header
+  */
     private void displayUserDetails() {
         User user = userLocaldetails.UserLoggedIn();
 
-        //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail());
         userName.setText(user.getName());
         userEmail.setText(user.getEmail());
 
@@ -281,11 +270,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, AccountSettingsActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(this, EventsSearchActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -305,18 +289,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /*
       * could take the data retrieved from the retriveShopList method and async  and then update the recylerView from there or from the update class by keeping track if a button has been pressed or not and conditions
      */
-
-    @Override
-    public void onClick(View v) {
-
-       arabicTransBtnClick = true;
-       progressDialog.show();
-       retrieveShopList();
-       convertToArabic();
-
-
-
-    }
 
 
     public void updateShopListEnglish(){

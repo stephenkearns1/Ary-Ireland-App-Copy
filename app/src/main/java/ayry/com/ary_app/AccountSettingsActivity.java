@@ -101,19 +101,21 @@ public class AccountSettingsActivity extends AppCompatActivity implements  Navig
             Intent intent = new Intent(this, MapsActivityPage.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
-
+            //this is were a intent will be started for the newsfeed activity
+            Intent intent = new Intent(this, NewsfeedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
+            // userLocaldetails.clearUserData();
+            // User user = userLocaldetails.UserLoggedIn();
+            // Log.i("User details clear", user.getEmail());
             Intent intent = new Intent(this, AccountSettingsActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

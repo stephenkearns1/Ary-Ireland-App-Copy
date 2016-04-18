@@ -21,17 +21,6 @@
             />
     </group>
 
-    <item android:title="@string/drawer_item_communicate"> /* used to be Communicate until it was moved to the strings file */
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/drawer_item_share" />  /* used to be Share until it was moved to the strings file */
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/drawer_item_send" /> /* used to be Send until it was moved to the strings file */
-        </menu>
-    </item>
+
 
 </menu>
