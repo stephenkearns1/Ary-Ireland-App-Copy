@@ -114,7 +114,7 @@ public class EventsSearchActivity extends AppCompatActivity implements Navigatio
         eventDate = eventDateTV.getText().toString();
         eventLocation = eventLocationTV.getText().toString();
         //start a new activity and pass rhe data as arugments
-        Intent i = new Intent(getApplicationContext(), EventsSearchResultsActivity .class);
+        Intent i = new Intent(getApplicationContext(), ResultsEventSearchActivity.class);
         i.putExtra("event_catagory",eventCatagory);
         i.putExtra("event_date",eventDate);
         i.putExtra("event_location",eventLocation);

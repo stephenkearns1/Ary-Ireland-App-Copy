@@ -3,14 +3,12 @@ package ayry.com.ary_app;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,10 +31,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsfeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ * Created by kearn on 18/04/2016.
+ */
+public class ResultsEventSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     RecyclerView recyclerView;
-    NewsfeedRecylerViewAdapter adapter;
+    EventsSearchAdapter adapter;
 
     List<EventsModel> eventsList;
     DrawerLayout mDrawerLayot;
@@ -52,6 +52,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
     ProgressDialog progressDialog;
     ProgressDialog rerefreshDialog;
     DetailsUserStoreLocal userLocaldetails;
+    String category,date,location;
 
     /* used for parsing json */
     //Tags for parsing json
@@ -63,13 +64,14 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
     private static final String tagDate = "eventDate";
     private static final String tagLat = "latitude";
     private static final String tagLong = "longitude";
+    String url = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Pull-NewsFeed/SearchEvents.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsfeed);
+        setContentView(R.layout.activity_events_search_results);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarEvents);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSearch);
         setSupportActionBar(toolbar);
 
 
@@ -90,27 +92,30 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
         userEmail = (TextView) navHeader.findViewById(R.id.emailTV);
 
 
+        //Get the bundle
+        Bundle bundle = getIntent().getExtras();
+
+        //Extract the data…
+        category = bundle.getString("event_catagory");
+        date = bundle.getString("event_date");
+        location = bundle.getString("event_location");
+
+
 
         eventsList = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.mRecylerView);
 
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new NewsfeedRecylerViewAdapter(this);
+        adapter = new EventsSearchAdapter(this);
 
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new NewsfeedRecylerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                EventsModel e = eventsList.get(position);
-                Toast.makeText(getApplicationContext(), e.getTitle() + " was clicked", Toast.LENGTH_LONG).show();
-            }
-        });
+
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +169,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
 
 
     public void updateShopListEnglish(){
-       if(arabicTransBtnClick == false) {
+        if(arabicTransBtnClick == false) {
             if (!(listOfEvents== null)) {
                 adapter.clear();
                 tempEventList.clear();
@@ -182,7 +187,7 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
             }
 
 
-       }
+        }
 
 
 
@@ -234,6 +239,11 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
     }
 
 
+    private String postGetMethodUrl() {
+        return url + "?category=" +category+ "?date=" +
+                date + "?location=" + location;
+    }
+
     /*
       * The method starts a Volley JsonArrayRequest, which is used for making network request by use of requestQueues
       * Volley also handles the request on separate worker threads and returns the parsed data back to the main thread
@@ -244,9 +254,9 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
 
     public void retrieveShopList() {
 
-        String url = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Pull-NewsFeed/PullNewsfeedData.php";
-        JsonArrayRequest request = new JsonArrayRequest(url,
+        JsonArrayRequest request= new JsonArrayRequest(postGetMethodUrl(),
                 new Response.Listener<JSONArray>() {
+
                     @Override
                     public void onResponse(JSONArray response) {
                         //check the response from the server
@@ -311,6 +321,9 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
 
         //adding request to the request queue which is kept in a singleton as to make the request queue last for application lifecycle
         AppController.getInstance().addToRequestQueue(request);
+
+
+
     }
 
 
@@ -435,3 +448,5 @@ public class NewsfeedActivity extends AppCompatActivity implements NavigationVie
 
 
 }
+
+

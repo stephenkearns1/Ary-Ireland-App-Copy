@@ -73,12 +73,15 @@
             android:configChanges="orientation|screenSize"/>
 
         <activity android:name=".EventsSearchActivity"
-            android:configChanges="orientation|screenSize"/>
-
-        <activity android:name=".EventsSearchResultsActivity"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".NewsfeedActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize">
+
+        </activity>
+        <activity android:name=".ResultsEventSearchActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize">
 
