@@ -40,16 +40,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-
-
-    /*
-      * This has finally work allahu akbar
-
-     */
-
-
-
-
     /* Varaibles */
 
     private  FragmentPagerAdapter FragmentPagerAdapter;
@@ -69,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Shop_items> listOfShopsArabic;
     private ArrayList<Shop_items> tempShopListArabic;
     private boolean arabicTransBtnClick;
+    private boolean englishTransBtnClick;
     ProgressDialog progressDialog;
 
 
@@ -152,9 +143,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //Set and click event on translator button to translate the text
-        mTranlateBtn = (Button) findViewById(R.id.translationBtn);
+       // mTranlateBtn = (Button) findViewById(R.id.translationBtn);
 
-        mTranlateBtn.setOnClickListener(this);
+      //  mTranlateBtn.setOnClickListener(this);
 
       //  mTranlateBtn.performClick();
 
@@ -190,7 +181,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if(id == R.id.action_refresh) {
+             //check which button has been click i.e. to refresh data in arabic or in english dependent on which is pressed
+            if(englishTransBtnClick == true){
+                retrieveShopList();
+            }else if(arabicTransBtnClick == true){
+                progressDialog.show();
+                retrieveShopList();
+                convertToArabic();
+            }else{
+                //default case as onStart english data is loaded so this takes care of the case were user refresh without clicking a button
+                retrieveShopList();
+            }
+        }else if(id == R.id.action_english){
+            englishTransBtnClick = true;
+            arabicTransBtnClick = false;
+            retrieveShopList();
+        }else if(id == R.id.action_arabic){
+            arabicTransBtnClick = true;
+            englishTransBtnClick = false;
+            progressDialog.show();
+            retrieveShopList();
+            convertToArabic();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean authenticate() {
@@ -512,6 +540,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onRefresh() {
         Toast.makeText(MainActivity.this, "Swipe refresh working", Toast.LENGTH_SHORT).show();
+        //if arabic translation button is true,
         retrieveShopList();
     }
 }//end of class
