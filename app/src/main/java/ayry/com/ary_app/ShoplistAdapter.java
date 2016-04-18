@@ -165,7 +165,7 @@ public class ShoplistAdapter extends RecyclerView.Adapter<ShoplistAdapter.ViewHo
         TextView shopTimeTV = viewHolder.shopTime;
 
         //set the views with the data
-        shopImg.setImageResource(R.drawable.android);
+        shopImg.setImageResource(R.drawable.shopdefault);
         shopTitleTV.setText(shop.getTitle());
         shopDescTV.setText(shop.getDesc());
         shopAddressTV.setText(shop.getAddress());
