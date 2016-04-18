@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
@@ -29,7 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kearn on 18/04/2016.
@@ -48,11 +51,11 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     private ArrayList<EventsModel> tempEventListArabic;
     private boolean arabicTransBtnClick;
     private boolean englishTransBtnClick;
-    private TextView userName,userEmail;
+    private TextView userName, userEmail;
     ProgressDialog progressDialog;
     ProgressDialog rerefreshDialog;
     DetailsUserStoreLocal userLocaldetails;
-    String category,date,location;
+    String catagory, date, location;
 
     /* used for parsing json */
     //Tags for parsing json
@@ -65,6 +68,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     private static final String tagLat = "latitude";
     private static final String tagLong = "longitude";
     String url = "https://ary-app-sign-in-script-stephenkearns1.c9users.io/Pull-NewsFeed/SearchEvents.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,21 +89,19 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Bundle bundle = getIntent().getExtras();
+        catagory = bundle.getString("event_catagory");
+        date = bundle.getString("event_date");
+        location = bundle.getString("event_location");
+
+
+        Log.d("bundle", catagory + date + location);
+
 
         //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
         View navHeader = navigationView.getHeaderView(0);
         userName = (TextView) navHeader.findViewById(R.id.usernameTV);
         userEmail = (TextView) navHeader.findViewById(R.id.emailTV);
-
-
-        //Get the bundle
-        Bundle bundle = getIntent().getExtras();
-
-        //Extract the data…
-        category = bundle.getString("event_catagory");
-        date = bundle.getString("event_date");
-        location = bundle.getString("event_location");
-
 
 
         eventsList = new ArrayList<>();
@@ -124,29 +126,28 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });*
 
-        userLocaldetails = new DetailsUserStoreLocal(this);
+    userLocaldetails = new DetailsUserStoreLocal(this);
 
-            /* declares the arraylist ot hold the reived text and also the translated */
-        listOfEvents = new ArrayList<>();
-        tempEventList = new ArrayList<>();
-        listOfEventsArabic = new ArrayList<>();
-        tempEventListArabic = new ArrayList<>();
+            declares the arraylist ot hold the reived text and also the translated *
 
-
-        /* Instantiates the progress dialog so it can be shown on the translate request to */
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setTitle("Translating");
-        progressDialog.setMessage("Please wait....");
+    listOfEvents = new ArrayList<>();
+    tempEventList = new ArrayList<>();
+    listOfEventsArabic = new ArrayList<>();
+    tempEventListArabic = new ArrayList<>();
 
 
-        rerefreshDialog = new ProgressDialog(this);
-        rerefreshDialog .setCancelable(false);
-        rerefreshDialog .setTitle("Refreshing");
-        rerefreshDialog .setMessage("Please wait....");
-    }
+         Instantiates the progress dialog so it can be shown on the translate request to
+
+
+
+
+    rerefreshDialog = new ProgressDialog(this);
+    rerefreshDialog .setCancelable(false);
+    rerefreshDialog .setTitle("Refreshing");
+    rerefreshDialog .setMessage("Please wait....");
+}
 
 
 
@@ -165,8 +166,8 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
         Log.i("user Loggedin", user.getUserName() + user.getEmail());
 
 
+    } */
     }
-
 
     public void updateShopListEnglish(){
         if(arabicTransBtnClick == false) {
@@ -193,7 +194,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -237,11 +238,19 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
         return super.onOptionsItemSelected(item);
     }
+  */
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        retrieveShopList();
+    }
 
-    private String postGetMethodUrl() {
-        return url + "?category=" +category+ "?date=" +
+    private String postGetMethodUrl(){
+        return url + "?category="  +catagory+ "?date=" +
                 date + "?location=" + location;
+
+
     }
 
     /*
@@ -252,15 +261,16 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     */
 
 
-    public void retrieveShopList() {
+    public void retrieveShopList(){
 
-        JsonArrayRequest request= new JsonArrayRequest(postGetMethodUrl(),
+        JsonArrayRequest request = new JsonArrayRequest(postGetMethodUrl(),
                 new Response.Listener<JSONArray>() {
+
 
                     @Override
                     public void onResponse(JSONArray response) {
                         //check the response from the server
-                        Log.i("New Response", response.toString());
+                        // Log.i("New Response", response.toString());
 
                         if (!(listOfEvents == null)) {
                             listOfEvents.clear();
@@ -314,12 +324,12 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
                 Log.d("Pulling ShopData", "Error" + error.getMessage());
             }
         });
 
-        //adding request to the request queue which is kept in a singleton as to make the request queue last for application lifecycle
+    //adding request to the request queue which is kept in a singleton as to make the request queue last for application lifecycle
         AppController.getInstance().addToRequestQueue(request);
 
 
@@ -328,7 +338,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
 
 
-    /* the microsoft translator api */
+    /* the microsoft translator api
 
     public void convertToArabic() {
 
@@ -358,31 +368,31 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
 
     }
 
-    class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
-        @Override
-        protected Boolean doInBackground(Void... arg0) {
-            Translate.setClientId("Ary-Ireland-app");
-            Translate.setClientSecret("OKuiH1Dq2uXViCmt7Mh5GC8nBE1IJA5UE7YAde1H6dQ=");
-            try {
+class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
+    @Override
+    protected Boolean doInBackground(Void... arg0) {
+        Translate.setClientId("Ary-Ireland-app");
+        Translate.setClientSecret("OKuiH1Dq2uXViCmt7Mh5GC8nBE1IJA5UE7YAde1H6dQ=");
+        try {
 
-                for(int i = 0; i < listOfEvents.size(); i++){
-                    EventsModel eventAr = listOfEvents.get(i);
-                    String eventCat = Translate.execute(eventAr.getCatagory(), Language.ENGLISH, Language.ARABIC);
-                    String eventTitle = Translate.execute(eventAr.getTitle(), Language.ENGLISH, Language.ARABIC);
-                    String eventLocation = Translate.execute(eventAr.getLocatiion(), Language.ENGLISH, Language.ARABIC);
+            for(int i = 0; i < listOfEvents.size(); i++){
+                EventsModel eventAr = listOfEvents.get(i);
+                String eventCat = Translate.execute(eventAr.getCatagory(), Language.ENGLISH, Language.ARABIC);
+                String eventTitle = Translate.execute(eventAr.getTitle(), Language.ENGLISH, Language.ARABIC);
+                String eventLocation = Translate.execute(eventAr.getLocatiion(), Language.ENGLISH, Language.ARABIC);
 
 
-                    EventsModel eventArabic = new EventsModel(eventAr.getId(), eventCat, eventTitle, eventLocation, eventAr.getTime(), eventAr.getDate(), eventAr.getLat(), eventAr.getLongattl());
-                    listOfEventsArabic.add(eventArabic);
-                }
-
-            } catch (Exception e) {
-                Log.d("Error translating",e.toString());
+                EventsModel eventArabic = new EventsModel(eventAr.getId(), eventCat, eventTitle, eventLocation, eventAr.getTime(), eventAr.getDate(), eventAr.getLat(), eventAr.getLongattl());
+                listOfEventsArabic.add(eventArabic);
             }
 
-            return true;
+        } catch (Exception e) {
+            Log.d("Error translating",e.toString());
         }
+
+        return true;
     }
+}
 
     private boolean authenticate() {
         Log.i("getLoggedIn value", "" + userLocaldetails.getLoggedIn());
@@ -446,7 +456,12 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
     }
 
 
+*/
 
+
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
+    }
 }
-
-

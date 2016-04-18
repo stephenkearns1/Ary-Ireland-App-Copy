@@ -16,6 +16,7 @@ public class EventsModel {
     private int image;
 
     public EventsModel(int id, String catagory, String title,String location, String time, String date, Double lat, Double longattl) {
+        this.id = id;
         this.title = title;
         this.catagory = catagory;
         this.time = time;

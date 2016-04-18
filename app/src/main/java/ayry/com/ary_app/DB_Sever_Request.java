@@ -121,7 +121,14 @@ public class DB_Sever_Request {
                     dbLoginCred.put("password", user.password);
                     urlToUse = server_Registration;
                     break;
+                case "shopData":
+                   /* dbLoginCred.put("shomImg", shop.img);
+                    dbLoginCred.put("shoptitle", shop.title);
+                    dbLoginCred.put("shopdesc", shop.desc); */
+                   // dbLoginCred.put("countern",String.valueOf(i));
+                    urlToUse = server_PullShopData;
 
+                    break;
 
 
             }
@@ -193,7 +200,33 @@ public class DB_Sever_Request {
                         //Log.d("UserReturned",userReturned.name);
 
                     }
-                }
+                }/*else if(requestToMake .equals("shopData")){
+
+                    JSONArray jsonObj = new JSONArray(response);
+
+
+                //    JSONObject shoplst = jsonObj.getJSONObject();
+
+                    for(int i = 0; i < jsonObj.length(); i++){
+                        JSONObject shopObj = jsonObj.getJSONObject(i);
+                        int id = Integer.parseInt(shopObj.getString(tagId));
+                        String shopname = shopObj.getString(tagName);
+                        String shopdesc = shopObj.getString(tagDesc);
+                        String shopgeo = shopObj.getString(tagGeo);
+                        String address = shopObj.getString(tagName);
+                        int num = shopObj.getString(tagDesc);
+                        String shopgeo = shopObj.getString(tagGeo);
+                        Log.i("shopid", "id"+id);
+                        Log.i("shopname",shopname);
+                        Log.i("shopdesc", shopdesc);
+                        Log.i("shopgeo", shopgeo);
+
+                        Shop_items shop = new Shop_items(id,"",shopname,shopdesc);
+                        requesrObj.addShop(shop);
+
+
+                    }
+
 
 
                   /*  while(response.length() != 0) {
@@ -217,9 +250,9 @@ public class DB_Sever_Request {
 
 
 
-                    } */
+                    }
 
-
+                } */
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -228,6 +261,8 @@ public class DB_Sever_Request {
             if(requestToMake.equals("login")){
                 requesrObj = new ObjectRequestHolder();
                 requesrObj.setUserApp(userReturned);
+                return requesrObj;
+            }else if(requestToMake.equals("shopData")){
                 return requesrObj;
             }else{
                 return null;
@@ -275,7 +310,10 @@ public class DB_Sever_Request {
                     callBackUser.finished(null);
                     super.onPostExecute(null);
                     break;
-
+                case "shopData":
+                    callBackUser.finished(requesrObj);
+                    super.onPostExecute(requesrObj);
+                    break;
 
 
             }
