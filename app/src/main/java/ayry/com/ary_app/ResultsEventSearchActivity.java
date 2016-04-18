@@ -270,7 +270,7 @@ public class ResultsEventSearchActivity extends AppCompatActivity implements Nav
                     @Override
                     public void onResponse(JSONArray response) {
                         //check the response from the server
-                        // Log.i("New Response", response.toString());
+                         Log.i("New Response", response.toString());
 
                         if (!(listOfEvents == null)) {
                             listOfEvents.clear();
@@ -457,7 +457,6 @@ class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 
 
 */
-
 
 
     @Override
